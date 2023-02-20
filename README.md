@@ -1,2 +1,1 @@
-# jacap-ts
-Just Another Cellular Automata Project - TypeScript
+# jacap-ts - Just Another Cellular Automata Project - TypeScript
