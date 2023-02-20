@@ -1,0 +1,20 @@
+{
+	"name": "jacap-ts",
+	"version": "1.0.0",
+	"description": "Just Another Cellular Automata Project - TypeScript",
+	"source": "src/index.html",
+	"scripts": {
+		"start": "parcel --open",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Jarpos/jacap-ts.git"
+	},
+	"author": "",
+	"license": "GPL3",
+	"devDependencies": {
+		"typescript": "^4.9.5",
+		"parcel": "^2.8.3"
+	}
+}
