@@ -1,7 +1,9 @@
+import { initControls, Running } from "./controls";
+import { GameOfLife } from "./examples/gameoflife";
 import { CellTest } from "./examples/randomblink";
 import { Simulator } from "./library/simulator";
 
-const RESOLUTION = 25;
+const RESOLUTION = 50;
 const WIDTH = 750;
 const HEIGHT = 750;
 
@@ -11,14 +13,20 @@ canvas.height = HEIGHT;
 const context = canvas.getContext("2d", { alpha: false, });
 
 var sim = new Simulator(WIDTH / RESOLUTION, HEIGHT / RESOLUTION)
-    .Initialize(CellTest.InitFunction);
+    .Initialize(GameOfLife.InitFunction);
 
 function Loop() {
     setTimeout(() => {
+        if (Running)
+            sim.AdvanceGeneration();
         sim.Render(context, RESOLUTION);
-        sim.AdvanceGeneration();
         Loop();
-    }, 500);
+    }, 100);
 }
-sim.Render(context, RESOLUTION);
 Loop();
+
+initControls(
+    () => sim.AdvanceGeneration(),
+    RESOLUTION,
+    (x, y) => sim.SetCell(x, y, new GameOfLife(1))
+);

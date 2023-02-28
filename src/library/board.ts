@@ -13,7 +13,7 @@ export class Board {
         );
     }
 
-    public Get(x: number, y: number): Cell {
+    public Get(x: number, y: number) {
         return this.Board[(y + this.Height) % this.Height][(x + this.Height) % this.Width];
     }
 

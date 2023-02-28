@@ -2,7 +2,7 @@ import { Board } from "./board";
 import { Neighborhood } from "./neighborhood";
 import { Cell } from "./types";
 
-export class Simulator {
+export class Simulator<T> {
     private Generation: number = 0;
     private EvenBoard: Board;
     private OddBoard: Board;
@@ -12,11 +12,13 @@ export class Simulator {
         this.OddBoard = new Board(width, height);
     }
 
-    public Initialize(initFunction: () => Cell) {
+    public Initialize(initFunction: () => Cell<T>) {
+        let pb = this.PreviousBoard;
         let cb = this.CurrentBoard;
 
-        for (let y = 0; y < cb.Height; y++) {
-            for (let x = 0; x < cb.Width; x++) {
+        for (let y = 0; y < pb.Height; y++) {
+            for (let x = 0; x < pb.Width; x++) {
+                pb.Set(x, y, initFunction());
                 cb.Set(x, y, initFunction());
             }
         }
@@ -24,12 +26,16 @@ export class Simulator {
     }
 
     public AdvanceGeneration() {
+        this.Generation++;
+
         let cb = this.CurrentBoard;
         let pb = this.PreviousBoard;
 
         for (let y = 0; y < cb.Height; y++) {
             for (let x = 0; x < cb.Width; x++) {
-                cb.Get(x, y).Update(Neighborhood.GetMooreNeighborhood(pb, x, y));
+                cb.Get(x, y).Update(
+                    Neighborhood.GetMooreNeighborhood(pb, x, y)
+                );
             }
         }
     }
@@ -47,8 +53,12 @@ export class Simulator {
         }
     }
 
+    public SetCell(x: number, y: number, value: Cell<T>) {
+        this.CurrentBoard.Set(x, y, value)
+    }
+
     public get PreviousBoard() {
-        return !(this.Generation % 2) ? this.OddBoard : this.EvenBoard;
+        return this.Generation % 2 ? this.EvenBoard : this.OddBoard;
     }
 
     public get CurrentBoard() {

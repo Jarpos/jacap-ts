@@ -1,20 +1,20 @@
 import { Board } from "./board";
 import { Cell } from "./types";
 
-export class Neighborhood {
-    /** Current Cell  */ C: Cell;
-    /** Northern Cell */ N: Cell;
-    /** Southern Cell */ S: Cell;
-    /** Eastern Cell  */ E: Cell;
-    /** Western Cell  */ W: Cell;
-    /** North Western Cell */ NW: Cell;
-    /** North Eastern Cell */ NE: Cell;
-    /** South Western Cell */ SW: Cell;
-    /** South Eastern Cell */ SE: Cell;
+export class Neighborhood<T> {
+    /** Current Cell  */ C: Cell<T>;
+    /** Northern Cell */ N: Cell<T>;
+    /** Southern Cell */ S: Cell<T>;
+    /** Eastern Cell  */ E: Cell<T>;
+    /** Western Cell  */ W: Cell<T>;
+    /** North Western Cell */ NW: Cell<T>;
+    /** North Eastern Cell */ NE: Cell<T>;
+    /** South Western Cell */ SW: Cell<T>;
+    /** South Eastern Cell */ SE: Cell<T>;
 
     constructor(
-        c: Cell, n: Cell, s: Cell, w: Cell, e: Cell,
-        nw?: Cell, ne?: Cell, sw?: Cell, se?: Cell) {
+        c: Cell<T>, n: Cell<T>, s: Cell<T>, w: Cell<T>, e: Cell<T>,
+        nw?: Cell<T>, ne?: Cell<T>, sw?: Cell<T>, se?: Cell<T>) {
         this.C = c;
         this.N = n;
         this.S = s;

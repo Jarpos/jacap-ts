@@ -3,7 +3,8 @@ import { Neighborhood } from "./neighborhood";
 
 export type color = `rgb(${number}, ${number}, ${number})` | `#${string}`;
 
-export interface Cell {
+export interface Cell<T> {
+    State: T;
     get Color(): color;
-    Update(neighbors: Neighborhood): void;
+    Update(neighbors: Neighborhood<T>): void;
 }
