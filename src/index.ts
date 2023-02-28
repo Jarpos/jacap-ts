@@ -1,6 +1,5 @@
 import { initControls, Running } from "./controls";
 import { GameOfLife } from "./examples/gameoflife";
-import { CellTest } from "./examples/randomblink";
 import { Simulator } from "./library/simulator";
 
 const RESOLUTION = 50;
