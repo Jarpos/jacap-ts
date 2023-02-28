@@ -1,16 +1,26 @@
 import { Board } from "./board";
-import { Neighborhood, Transform } from "./types";
+import { Neighborhood } from "./neighborhood";
+import { Cell } from "./types";
 
-export class Simulator<T> {
+export class Simulator {
     private Generation: number = 0;
-    private EvenBoard: Board<T>;
-    private OddBoard: Board<T>;
-    private NextFunction: Transform<T>;
+    private EvenBoard: Board;
+    private OddBoard: Board;
 
-    constructor(width: number, height: number, next: Transform<T>) {
-        this.EvenBoard = new Board<T>(width, height);
-        this.OddBoard = new Board<T>(width, height);
-        this.NextFunction = next;
+    constructor(width: number, height: number) {
+        this.EvenBoard = new Board(width, height);
+        this.OddBoard = new Board(width, height);
+    }
+
+    public Initialize(initFunction: () => Cell) {
+        let cb = this.CurrentBoard;
+
+        for (let y = 0; y < cb.Height; y++) {
+            for (let x = 0; x < cb.Width; x++) {
+                cb.Set(x, y, initFunction());
+            }
+        }
+        return this;
     }
 
     public AdvanceGeneration() {
@@ -19,9 +29,20 @@ export class Simulator<T> {
 
         for (let y = 0; y < cb.Height; y++) {
             for (let x = 0; x < cb.Width; x++) {
-                cb.Set(x, y, this.NextFunction(
-                    Neighborhood.GetMooreNeighborhood(pb, x, y))
-                );
+                cb.Get(x, y).Update(Neighborhood.GetMooreNeighborhood(pb, x, y));
+            }
+        }
+    }
+
+    public Render(context: CanvasRenderingContext2D, resolution: number) {
+        let cb = this.CurrentBoard;
+        for (let y = 0; y < cb.Height; y++) {
+            for (let x = 0; x < cb.Width; x++) {
+                context.beginPath();
+                context.rect(x * resolution, y * resolution, resolution, resolution);
+                context.fillStyle = cb.Get(x, y).Color;
+                context.fill();
+                context.stroke();
             }
         }
     }
