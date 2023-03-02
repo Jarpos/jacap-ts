@@ -3,8 +3,8 @@ import { GameOfLife } from "./examples/gameoflife";
 import { Simulator } from "./library/simulator";
 
 const RESOLUTION = 50;
-const WIDTH = 750;
-const HEIGHT = 750;
+const WIDTH = 600;
+const HEIGHT = 600;
 
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 canvas.width = WIDTH;
@@ -24,8 +24,12 @@ function Loop() {
 }
 Loop();
 
-initControls(
-    () => sim.AdvanceGeneration(),
-    RESOLUTION,
-    (x, y) => sim.SetCell(x, y, new GameOfLife(1))
-);
+initControls({
+    Resolution: RESOLUTION,
+    SingleStep: () => sim.AdvanceGeneration(),
+    OnClickCell: (x: number, y: number) => sim.SetCell(x, y, new GameOfLife(1)),
+    LogFunction: () => {
+        sim.PreviousBoard.Log()
+        sim.CurrentBoard.Log()
+    },
+});
