@@ -38,9 +38,9 @@ export class GameOfLife implements Cell<GoLStates> {
     }
 
     static InitFunction() {
-        // return [
-        //     new GameOfLife(0), new GameOfLife(1)
-        // ][Math.floor(Math.random() * 2)]
-        return new GameOfLife(0);
+        return [
+            new GameOfLife(0), new GameOfLife(1)
+        ][Math.floor(Math.random() * 2)];
+        // return new GameOfLife(0);
     }
 }
