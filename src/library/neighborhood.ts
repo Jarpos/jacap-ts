@@ -38,4 +38,26 @@ export class Neighborhood<T> {
             board.Get(x - 1, y), board.Get(x + 1, y)
         );
     }
+
+    public GetMooreCount(comparator: (value: T) => boolean) {
+        let count = this.GetNeumannCount(comparator);
+
+        if (comparator(this.NW)) count++;
+        if (comparator(this.NE)) count++;
+        if (comparator(this.SW)) count++;
+        if (comparator(this.SE)) count++;
+
+        return count;
+    }
+
+    public GetNeumannCount(comparator: (value: T) => boolean) {
+        let count = 0;
+
+        if (comparator(this.N)) count++;
+        if (comparator(this.S)) count++;
+        if (comparator(this.W)) count++;
+        if (comparator(this.E)) count++;
+
+        return count;
+    }
 }
