@@ -38,6 +38,7 @@ export class Simulator<T> {
                 );
             }
         }
+        return this;
     }
 
     public Render(context: CanvasRenderingContext2D, resolution: number) {
@@ -51,6 +52,7 @@ export class Simulator<T> {
                 context.stroke();
             }
         }
+        return this;
     }
 
     public SetCell(x: number, y: number, value: Cell<T>) {
