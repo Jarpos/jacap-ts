@@ -1,7 +1,7 @@
 import { Cell } from "./types";
 
-export class Board {
-    private Board: Cell[][];
+export class Board<T> {
+    private Board: T[][];
     public readonly Width: number;
     public readonly Height: number;
 
@@ -17,7 +17,7 @@ export class Board {
         return this.Board[(y + this.Height) % this.Height][(x + this.Height) % this.Width];
     }
 
-    public Set(x: number, y: number, value: Cell) {
+    public Set(x: number, y: number, value: T) {
         this.Board[(y + this.Height) % this.Height][(x + this.Height) % this.Width] = value;
     }
 }
