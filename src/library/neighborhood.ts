@@ -1,21 +1,16 @@
 import { Board } from "./board";
-import { Cell } from "./types";
 
 export class Neighborhood<T> {
-    /** Current Cell  */ C: Cell<T>;
-    /** Northern Cell */ N: Cell<T>;
-    /** Southern Cell */ S: Cell<T>;
-    /** Eastern Cell  */ E: Cell<T>;
-    /** Western Cell  */ W: Cell<T>;
-    /** North Western Cell */ NW: Cell<T>;
-    /** North Eastern Cell */ NE: Cell<T>;
-    /** South Western Cell */ SW: Cell<T>;
-    /** South Eastern Cell */ SE: Cell<T>;
+    /** Northern Cell */ N: T;
+    /** Southern Cell */ S: T;
+    /** Eastern Cell  */ E: T;
+    /** Western Cell  */ W: T;
+    /** North Western Cell */ NW: T;
+    /** North Eastern Cell */ NE: T;
+    /** South Western Cell */ SW: T;
+    /** South Eastern Cell */ SE: T;
 
-    constructor(
-        c: Cell<T>, n: Cell<T>, s: Cell<T>, w: Cell<T>, e: Cell<T>,
-        nw?: Cell<T>, ne?: Cell<T>, sw?: Cell<T>, se?: Cell<T>) {
-        this.C = c;
+    constructor(n: T, s: T, w: T, e: T, nw?: T, ne?: T, sw?: T, se?: T) {
         this.N = n;
         this.S = s;
         this.W = w;
@@ -27,10 +22,8 @@ export class Neighborhood<T> {
         this.SE = se;
     }
 
-    static GetMooreNeighborhood(board: Board, x: number, y: number) {
-        return new Neighborhood(
-            board.Get(x, y),
-
+    static GetMooreNeighborhood<T>(board: Board<T>, x: number, y: number) {
+        return new Neighborhood<T>(
             board.Get(x, y - 1), board.Get(x, y + 1),
             board.Get(x - 1, y), board.Get(x + 1, y),
 
@@ -39,9 +32,8 @@ export class Neighborhood<T> {
         );
     }
 
-    static GetNeumannNeighborhood(board: Board, x: number, y: number) {
-        return new Neighborhood(
-            board.Get(x, y),
+    static GetNeumannNeighborhood<T>(board: Board<T>, x: number, y: number) {
+        return new Neighborhood<T>(
             board.Get(x, y - 1), board.Get(x, y + 1),
             board.Get(x - 1, y), board.Get(x + 1, y)
         );

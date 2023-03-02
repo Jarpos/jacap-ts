@@ -1,18 +1,26 @@
 import { Board } from "./board";
-import { Neighborhood } from "./neighborhood";
-import { Cell } from "./types";
+import { Color } from "./types";
 
-export class Simulator<T> {
+export interface SimulatorSettings<CellType, NeighborType> {
+    NeighborFunction: (board: Board<CellType>, x: number, y: number) => NeighborType;
+    UpdateFunction: (current: CellType, neighbors: NeighborType) => CellType;
+    ColorFunction: (cell: CellType) => Color;
+}
+
+export class Simulator<CellType, NeighborType> {
     private Generation: number = 0;
-    private EvenBoard: Board;
-    private OddBoard: Board;
+    private EvenBoard: Board<CellType>;
+    private OddBoard: Board<CellType>;
 
-    constructor(width: number, height: number) {
+    private Settings: SimulatorSettings<CellType, NeighborType>;
+
+    constructor(width: number, height: number, settings: SimulatorSettings<CellType, NeighborType>) {
         this.EvenBoard = new Board(width, height);
         this.OddBoard = new Board(width, height);
+        this.Settings = settings;
     }
 
-    public Initialize(initFunction: () => Cell<T>) {
+    public Initialize(initFunction: () => CellType) {
         let pb = this.PreviousBoard;
         let cb = this.CurrentBoard;
 
@@ -27,14 +35,16 @@ export class Simulator<T> {
 
     public AdvanceGeneration() {
         this.Generation++;
-
         let cb = this.CurrentBoard;
         let pb = this.PreviousBoard;
 
         for (let y = 0; y < cb.Height; y++) {
             for (let x = 0; x < cb.Width; x++) {
-                cb.Get(x, y).Update(
-                    Neighborhood.GetMooreNeighborhood(pb, x, y)
+                cb.Set(x, y,
+                    this.Settings.UpdateFunction(
+                        pb.Get(x, y),
+                        this.Settings.NeighborFunction(pb, x, y)
+                    )
                 );
             }
         }
@@ -47,7 +57,7 @@ export class Simulator<T> {
             for (let x = 0; x < cb.Width; x++) {
                 context.beginPath();
                 context.rect(x * resolution, y * resolution, resolution, resolution);
-                context.fillStyle = cb.Get(x, y).Color;
+                context.fillStyle = this.Settings.ColorFunction(cb.Get(x, y));
                 context.fill();
                 context.stroke();
             }
@@ -55,7 +65,7 @@ export class Simulator<T> {
         return this;
     }
 
-    public SetCell(x: number, y: number, value: Cell<T>) {
+    public SetCell(x: number, y: number, value: CellType) {
         this.CurrentBoard.Set(x, y, value)
     }
 

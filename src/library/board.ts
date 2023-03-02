@@ -1,5 +1,3 @@
-import { Cell } from "./types";
-
 export class Board<T> {
     private Board: T[][];
     public readonly Width: number;
