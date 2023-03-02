@@ -31,18 +31,18 @@ export class Neighborhood<T> {
         return new Neighborhood(
             board.Get(x, y),
 
-            board.Get(x, y + 1), board.Get(x, y - 1),
+            board.Get(x, y - 1), board.Get(x, y + 1),
             board.Get(x - 1, y), board.Get(x + 1, y),
 
-            board.Get(x - 1, y + 1), board.Get(x + 1, y + 1),
-            board.Get(x - 1, y - 1), board.Get(x + 1, y - 1)
+            board.Get(x - 1, y - 1), board.Get(x + 1, y - 1),
+            board.Get(x - 1, y + 1), board.Get(x + 1, y + 1)
         );
     }
 
     static GetNeumannNeighborhood(board: Board, x: number, y: number) {
         return new Neighborhood(
             board.Get(x, y),
-            board.Get(x, y + 1), board.Get(x, y - 1),
+            board.Get(x, y - 1), board.Get(x, y + 1),
             board.Get(x - 1, y), board.Get(x + 1, y)
         );
     }
