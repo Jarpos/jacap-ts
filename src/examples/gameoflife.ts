@@ -16,7 +16,7 @@ export class GameOfLife implements Cell<GoLStates> {
     get Color(): color { return this.State; };
     public Update(n: Neighborhood<GoLStates>) {
         let count = 0;
-if (n.C.State === GoLStates.Alive) console.log(n)
+
         if (n.N.State === GoLStates.Alive) count++;
         if (n.S.State === GoLStates.Alive) count++;
         if (n.W.State === GoLStates.Alive) count++;
@@ -26,12 +26,14 @@ if (n.C.State === GoLStates.Alive) console.log(n)
         if (n.SW.State === GoLStates.Alive) count++;
         if (n.SE.State === GoLStates.Alive) count++;
 
-        if (this.State === GoLStates.Alive && count < 2) {
+        if (n.C.State === GoLStates.Alive && count < 2) {
             this.State = GoLStates.Dead;
-        } else if (this.State === GoLStates.Alive && count > 3) {
+        } else if (n.C.State === GoLStates.Alive && count > 3) {
             this.State = GoLStates.Dead;
-        } else if (this.State === GoLStates.Dead && count === 3) {
+        } else if (n.C.State === GoLStates.Dead && count === 3) {
             this.State = GoLStates.Alive;
+        } else {
+            this.State = n.C.State;
         }
     }
 
