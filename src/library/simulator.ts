@@ -1,5 +1,5 @@
 import { Board } from "./board";
-import { ColorFunction, NeighborFunction, UpdateFunction } from "./types";
+import { ColorFunction, InitializationFunction, NeighborFunction, UpdateFunction } from "./types";
 
 export interface SimulatorSettings<CellType, NeighborType> {
     NeighborFunction: NeighborFunction<CellType, NeighborType>;
@@ -23,14 +23,15 @@ export class Simulator<CellType, NeighborType> {
         this.Settings = settings;
     }
 
-    public Initialize(initFunction: () => CellType) {
+    public Initialize(initFunction: InitializationFunction<CellType>) {
         let pb = this.PreviousBoard;
         let cb = this.CurrentBoard;
 
         for (let y = 0; y < pb.Height; y++) {
             for (let x = 0; x < pb.Width; x++) {
-                pb.Set(x, y, initFunction());
-                cb.Set(x, y, initFunction());
+                const state = initFunction(x, y);
+                pb.Set(x, y, state);
+                cb.Set(x, y, state);
             }
         }
         return this;
