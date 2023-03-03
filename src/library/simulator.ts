@@ -1,10 +1,10 @@
 import { Board } from "./board";
-import { Color } from "./types";
+import { ColorFunction, NeighborFunction, UpdateFunction } from "./types";
 
 export interface SimulatorSettings<CellType, NeighborType> {
-    NeighborFunction: (board: Board<CellType>, x: number, y: number) => NeighborType;
-    UpdateFunction: (current: CellType, neighbors: NeighborType) => CellType;
-    ColorFunction: (cell: CellType) => Color;
+    NeighborFunction: NeighborFunction<CellType, NeighborType>;
+    UpdateFunction: UpdateFunction<CellType, NeighborType>;
+    ColorFunction: ColorFunction<CellType>;
 }
 
 export class Simulator<CellType, NeighborType> {
@@ -14,7 +14,10 @@ export class Simulator<CellType, NeighborType> {
 
     private Settings: SimulatorSettings<CellType, NeighborType>;
 
-    constructor(width: number, height: number, settings: SimulatorSettings<CellType, NeighborType>) {
+    constructor(
+        width: number, height: number,
+        settings: SimulatorSettings<CellType, NeighborType>
+    ) {
         this.EvenBoard = new Board(width, height);
         this.OddBoard = new Board(width, height);
         this.Settings = settings;
