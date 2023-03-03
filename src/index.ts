@@ -7,17 +7,11 @@ import { Simulator } from "./library/simulator";
 
 const canvas = new SimulatorCanvas("canvas", 750, 750, 10);
 
-// var sim = new Simulator<boolean, Neighborhood<boolean>>(canvas.Width, canvas.Height, {
-//     NeighborFunction: Neighborhood.GetNeumannNeighborhood,
-//     UpdateFunction: RandomBlinkTest.Update,
-//     ColorFunction: RandomBlinkTest.Color,
-// }).Initialize(RandomBlinkTest.InitFunction);
+// var sim = new Simulator(canvas.CellsX, canvas.CellsY, RandomBlinkTest.Functions)
+//     .Initialize(RandomBlinkTest.InitFunction);
 
-var sim = new Simulator<GoLStates, Neighborhood<GoLStates>>(canvas.CellsX, canvas.CellsY, {
-    NeighborFunction: Neighborhood.GetMooreNeighborhood,
-    UpdateFunction: GameOfLife.Update,
-    ColorFunction: GameOfLife.Color,
-}).Initialize(GameOfLife.InitFunction);
+var sim = new Simulator(canvas.CellsX, canvas.CellsY, GameOfLife.Functions)
+    .Initialize(GameOfLife.InitFunction);
 
 function Loop() {
     setTimeout(() => {

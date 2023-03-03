@@ -1,4 +1,5 @@
 import { Neighborhood } from "../library/neighborhood";
+import { SimulatorSettings } from "../library/simulator";
 import { Color } from "../library/types";
 
 export enum GoLStates {
@@ -22,6 +23,12 @@ export namespace GameOfLife {
         return current;
     }
 
-    export const InitFunction = () =>
+    export const InitFunction = (x: number, y: number) =>
         [GoLStates.Alive, GoLStates.Dead][Math.floor(Math.random() * 2)];
+
+    export const Functions: SimulatorSettings<GoLStates, Neighborhood<GoLStates>> = {
+        NeighborFunction: Neighborhood.GetMooreNeighborhood,
+        UpdateFunction: GameOfLife.Update,
+        ColorFunction: GameOfLife.Color,
+    };
 }
