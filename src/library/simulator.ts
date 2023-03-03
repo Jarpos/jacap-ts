@@ -68,6 +68,10 @@ export class Simulator<CellType, NeighborType> {
         return this;
     }
 
+    public GetCell(x: number, y: number) {
+        return this.CurrentBoard.Get(x, y);
+    }
+
     public SetCell(x: number, y: number, value: CellType) {
         this.CurrentBoard.Set(x, y, value)
     }
