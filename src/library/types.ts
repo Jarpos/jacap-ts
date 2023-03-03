@@ -9,3 +9,5 @@ export type UpdateFunction<CellType, NeighborType>
     = (current: CellType, neighbors: NeighborType) => CellType;
 
 export type ColorFunction<CellType> = (cell: CellType) => Color;
+
+export type InitializationFunction<CellType> = (x: number, y: number) => CellType;
