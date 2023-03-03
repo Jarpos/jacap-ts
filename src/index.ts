@@ -4,9 +4,7 @@ import { RandomBlinkTest } from "./examples/randomblink";
 import { Neighborhood } from "./library/neighborhood";
 import { Simulator } from "./library/simulator";
 
-const RESOLUTION = 50;
-const WIDTH = 600;
-const HEIGHT = 600;
+const [RESOLUTION, WIDTH, HEIGHT] = [10, 750, 750];
 
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 canvas.width = WIDTH;
@@ -39,8 +37,4 @@ initControls({
     Resolution: RESOLUTION,
     SingleStep: () => sim.AdvanceGeneration(),
     OnClickCell: (x: number, y: number) => sim.SetCell(x, y, GoLStates.Alive),
-    LogFunction: () => {
-        // sim.PreviousBoard.Log()
-        // sim.CurrentBoard.Log()
-    },
 });
