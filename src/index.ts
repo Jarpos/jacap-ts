@@ -36,5 +36,8 @@ Loop();
 initControls({
     Resolution: RESOLUTION,
     SingleStep: () => sim.AdvanceGeneration(),
-    OnClickCell: (x: number, y: number) => sim.SetCell(x, y, GoLStates.Alive),
+    OnClickCell: (x: number, y: number) =>
+        sim.SetCell(
+            x, y, sim.GetCell(x, y) === GoLStates.Alive ? GoLStates.Dead : GoLStates.Alive
+        ),
 });
