@@ -1,6 +1,5 @@
 import { Neighborhood } from "../library/neighborhood";
-import { SimulatorSettings } from "../library/simulator";
-import { Color } from "../library/types";
+import { AutomatonSettings, Color, SimulatorSettings } from "../library/types";
 
 export namespace GameOfLife {
     export enum States {
@@ -23,12 +22,19 @@ export namespace GameOfLife {
 
     export const Color = (state: States) => state as Color;
 
-    export const InitFunction = (x: number, y: number) =>
+    export const RandomInitialization = (x: number, y: number) =>
         [States.Alive, States.Dead][Math.floor(Math.random() * 2)];
 
-    export const Functions: SimulatorSettings<States, Neighborhood<States>> = {
+    export const Settings: SimulatorSettings<States, Neighborhood<States>> = {
         NeighborFunction: Neighborhood.GetMooreNeighborhood,
         UpdateFunction: GameOfLife.Update,
         ColorFunction: GameOfLife.Color,
+    };
+
+    export const AutomatonSettings: AutomatonSettings<States, Neighborhood<States>> = {
+        SimulatorSettings: Settings,
+        InitializationFunctions: [
+            { Name: "Random", Function: RandomInitialization },
+        ],
     };
 }
