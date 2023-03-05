@@ -1,4 +1,5 @@
 import { initControls, Running } from "./controls";
+import { DayAndNight } from "./examples/dayandnight";
 import { GameOfLife } from "./examples/gameoflife";
 import { RandomBlinkTest } from "./examples/randomblink";
 import { SimulatorCanvas } from "./library/canvas";
@@ -9,10 +10,11 @@ const canvas = new SimulatorCanvas("canvas", 750, 750, 10);
 const Automatons = [
     GameOfLife.AutomatonSettings,
     RandomBlinkTest.AutomatonSettings,
+    DayAndNight.AutomatonSettings,
 ];
 
-const automaton = new Automaton(canvas.CellsX, canvas.CellsY, GameOfLife.AutomatonSettings.AutomatonFunctions)
-    .Initialize(GameOfLife.RandomInitialization);
+const automaton = new Automaton(canvas.CellsX, canvas.CellsY, DayAndNight.AutomatonSettings.AutomatonFunctions)
+    .Initialize(DayAndNight.RandomInitialization);
 
 function Loop() {
     setTimeout(() => {
