@@ -8,8 +8,6 @@ export namespace GameOfLife {
         Alive = "#717171",
     }
 
-    export const Color = (state: States) => state as Color;
-
     export const Update = (current: States, neighbors: Neighborhood<States>) => {
         let count = neighbors.GetMooreCount(v => v === States.Alive);
 
@@ -22,6 +20,8 @@ export namespace GameOfLife {
         }
         return current;
     }
+
+    export const Color = (state: States) => state as Color;
 
     export const InitFunction = (x: number, y: number) =>
         [States.Alive, States.Dead][Math.floor(Math.random() * 2)];
