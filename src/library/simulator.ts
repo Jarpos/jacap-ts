@@ -1,11 +1,5 @@
 import { Board } from "./board";
-import { ColorFunction, InitializationFunction, NeighborFunction, UpdateFunction } from "./types";
-
-export interface SimulatorSettings<CellType, NeighborType> {
-    NeighborFunction: NeighborFunction<CellType, NeighborType>;
-    UpdateFunction: UpdateFunction<CellType, NeighborType>;
-    ColorFunction: ColorFunction<CellType>;
-}
+import { InitializationFunction, SimulatorSettings } from "./types";
 
 export class Simulator<CellType, NeighborType> {
     private Generation: number = 0;

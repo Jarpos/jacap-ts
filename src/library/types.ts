@@ -11,3 +11,17 @@ export type UpdateFunction<CellType, NeighborType>
 export type ColorFunction<CellType> = (cell: CellType) => Color;
 
 export type InitializationFunction<CellType> = (x: number, y: number) => CellType;
+
+export interface SimulatorSettings<CellType, NeighborType> {
+    NeighborFunction: NeighborFunction<CellType, NeighborType>;
+    UpdateFunction: UpdateFunction<CellType, NeighborType>;
+    ColorFunction: ColorFunction<CellType>;
+}
+
+export interface AutomatonSettings<CellType, NeighborType> {
+    SimulatorSettings: SimulatorSettings<CellType, NeighborType>;
+    InitializationFunctions: {
+        Name: string;
+        Function: InitializationFunction<CellType>
+    }[];
+}
