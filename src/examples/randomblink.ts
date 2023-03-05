@@ -1,5 +1,5 @@
 import { Neighborhood } from "../library/neighborhood";
-import { AutomatonSettings, Color, SimulatorSettings } from "../library/types";
+import { AutomatonDefinition, Color, AutomatonFunctions } from "../library/types";
 
 export namespace RandomBlinkTest {
     export const Update = (current: boolean, _: Neighborhood<boolean>) => !current;
@@ -7,14 +7,14 @@ export namespace RandomBlinkTest {
 
     export const RandomInitialization = () => [true, false][Math.floor(Math.random() * 2)];
 
-    export const Settings: SimulatorSettings<boolean, Neighborhood<boolean>> = {
+    export const Settings: AutomatonFunctions<boolean, Neighborhood<boolean>> = {
         NeighborFunction: Neighborhood.GetNeumannNeighborhood,
         UpdateFunction: RandomBlinkTest.Update,
         ColorFunction: RandomBlinkTest.Color,
     };
 
-    export const AutomatonSettings: AutomatonSettings<boolean, Neighborhood<boolean>> = {
-        SimulatorSettings: Settings,
+    export const AutomatonSettings: AutomatonDefinition<boolean, Neighborhood<boolean>> = {
+        AutomatonFunctions: Settings,
         InitializationFunctions: [
             { Name: "Random", Function: RandomInitialization },
         ],

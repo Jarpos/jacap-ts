@@ -1,20 +1,20 @@
 import { Board } from "./board";
-import { InitializationFunction, SimulatorSettings } from "./types";
+import { InitializationFunction, AutomatonFunctions } from "./types";
 
-export class Simulator<CellType, NeighborType> {
+export class Automaton<CellType, NeighborType> {
     private Generation: number = 0;
     private EvenBoard: Board<CellType>;
     private OddBoard: Board<CellType>;
 
-    private Settings: SimulatorSettings<CellType, NeighborType>;
+    private Functions: AutomatonFunctions<CellType, NeighborType>;
 
     constructor(
         width: number, height: number,
-        settings: SimulatorSettings<CellType, NeighborType>
+        functions: AutomatonFunctions<CellType, NeighborType>
     ) {
         this.EvenBoard = new Board(width, height);
         this.OddBoard = new Board(width, height);
-        this.Settings = settings;
+        this.Functions = functions;
     }
 
     public Initialize(initFunction: InitializationFunction<CellType>) {
@@ -39,9 +39,9 @@ export class Simulator<CellType, NeighborType> {
         for (let y = 0; y < cb.Height; y++) {
             for (let x = 0; x < cb.Width; x++) {
                 cb.Set(x, y,
-                    this.Settings.UpdateFunction(
+                    this.Functions.UpdateFunction(
                         pb.Get(x, y),
-                        this.Settings.NeighborFunction(pb, x, y)
+                        this.Functions.NeighborFunction(pb, x, y)
                     )
                 );
             }
@@ -55,7 +55,7 @@ export class Simulator<CellType, NeighborType> {
             for (let x = 0; x < cb.Width; x++) {
                 context.beginPath();
                 context.rect(x * resolution, y * resolution, resolution, resolution);
-                context.fillStyle = this.Settings.ColorFunction(cb.Get(x, y));
+                context.fillStyle = this.Functions.ColorFunction(cb.Get(x, y));
                 context.fill();
                 context.stroke();
             }
