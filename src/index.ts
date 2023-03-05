@@ -1,7 +1,7 @@
 import { initControls, Running } from "./controls";
-import { DayAndNight } from "./examples/dayandnight";
-import { GameOfLife } from "./examples/gameoflife";
-import { RandomBlinkTest } from "./examples/randomblink";
+import { DayAndNight } from "./examples/DayAndNighta";
+import { GameOfLife } from "./examples/GameOfLifea";
+import { RandomBlinkTest } from "./examples/RandomBlinka";
 import { SimulatorCanvas } from "./library/canvas";
 import { Automaton } from "./library/simulator";
 
