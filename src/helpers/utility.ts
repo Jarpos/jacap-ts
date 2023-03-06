@@ -1,5 +1,5 @@
 import { AutomatonCanvas } from "../library/canvas";
-import { Automaton } from "../library/simulator";
+import { Automaton } from "../library/automaton";
 import { AutomatonDefinition } from "../library/types";
 
 export namespace Utility {

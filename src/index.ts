@@ -5,7 +5,7 @@ import { GameOfLife } from "./examples/GameOfLife";
 import { RandomBlinkTest } from "./examples/RandomBlink";
 import { Utility } from "./helpers/utility";
 import { AutomatonCanvas } from "./library/canvas";
-import { Automaton } from "./library/simulator";
+import { Automaton } from "./library/automaton";
 
 const Automatons = [
     GameOfLife.AutomatonSettings,
