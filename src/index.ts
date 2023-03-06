@@ -3,10 +3,9 @@ import { BriansBrain } from "./examples/BriansBrain";
 import { DayAndNight } from "./examples/DayAndNight";
 import { GameOfLife } from "./examples/GameOfLife";
 import { RandomBlinkTest } from "./examples/RandomBlink";
+import { Helpers } from "./helpers/simulate";
 import { AutomatonCanvas } from "./library/canvas";
 import { Automaton } from "./library/simulator";
-
-const canvas = new AutomatonCanvas("canvas", 750, 750, 10);
 
 const Automatons = [
     GameOfLife.AutomatonSettings,
@@ -15,8 +14,8 @@ const Automatons = [
     BriansBrain.AutomatonSettings,
 ];
 
-const automaton = new Automaton(canvas.BoardWidth, canvas.BoardHeight, BriansBrain.AutomatonSettings.AutomatonFunctions)
-    .Initialize(BriansBrain.RandomInitialization);
+const canvas = new AutomatonCanvas("canvas", 800, 800, 10);
+const automaton = Helpers.createSimulation(canvas, BriansBrain.AutomatonSettings)
 
 function Loop() {
     setTimeout(() => {
