@@ -8,14 +8,14 @@ import { AutomatonCanvas } from "./library/canvas";
 import { Automaton } from "./library/automaton";
 
 const Automatons = [
-    GameOfLife.AutomatonSettings,
-    RandomBlinkTest.AutomatonSettings,
-    DayAndNight.AutomatonSettings,
-    BriansBrain.AutomatonSettings,
+    BriansBrain.AutomatonDefinition,
+    DayAndNight.AutomatonDefinition,
+    GameOfLife.AutomatonDefinition,
+    RandomBlinkTest.AutomatonDefinition,
 ];
 
 const canvas = new AutomatonCanvas("canvas", 800, 800, 10);
-const automaton = Utility.createSimulation(canvas, DayAndNight.AutomatonSettings)
+const automaton = Utility.createSimulation(canvas, BriansBrain.AutomatonDefinition)
 
 function Loop() {
     setTimeout(() => {

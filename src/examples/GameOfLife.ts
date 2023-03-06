@@ -32,7 +32,7 @@ export namespace GameOfLife {
         ColorFunction: GameOfLife.Color,
     };
 
-    export const AutomatonSettings: AutomatonDefinition<States, Neighborhood<States>> = {
+    export const AutomatonDefinition: AutomatonDefinition<States, Neighborhood<States>> = {
         AutomatonFunctions: Settings,
         InitializationFunctions: [
             { Name: "Random", Function: RandomInitialization },

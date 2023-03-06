@@ -14,7 +14,7 @@ export namespace RandomBlinkTest {
         ColorFunction: RandomBlinkTest.Color,
     };
 
-    export const AutomatonSettings: AutomatonDefinition<boolean, Neighborhood<boolean>> = {
+    export const AutomatonDefinition: AutomatonDefinition<boolean, Neighborhood<boolean>> = {
         AutomatonFunctions: Settings,
         InitializationFunctions: [
             { Name: "Random", Function: RandomInitialization },
