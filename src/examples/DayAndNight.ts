@@ -1,4 +1,4 @@
-import { Neighborhood } from "../library/neighborhood";
+import { Neighborhood } from "../helpers/neighborhood";
 import { AutomatonDefinition, Color, AutomatonFunctions } from "../library/types";
 
 export namespace DayAndNight {

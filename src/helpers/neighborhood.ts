@@ -1,4 +1,4 @@
-import { Board } from "./board";
+import { Board } from "../library/board";
 
 export class Neighborhood<T> {
     /** Northern Cell */ N: T;
