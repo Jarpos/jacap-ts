@@ -1,4 +1,5 @@
 import { Neighborhood } from "../helpers/neighborhood";
+import { Helpers } from "../helpers/random";
 import { AutomatonDefinition, Color, AutomatonFunctions } from "../library/types";
 
 export namespace DayAndNight {
@@ -29,7 +30,7 @@ export namespace DayAndNight {
     export const Color = (state: States) => state as Color;
 
     export const RandomInitialization = (x: number, y: number) =>
-        [States.Dead, States.Dead][Math.floor(Math.random() * 2)];
+        Helpers.chooseRandom([States.Dead, States.Dead]);
 
     export const Settings: AutomatonFunctions<States, Neighborhood<States>> = {
         NeighborFunction: Neighborhood.GetMooreNeighborhood,
