@@ -10,8 +10,6 @@ export namespace BriansBrain {
 
     export const Update = (current: States, neighbors: Neighborhood<States>) => {
         let onCount = neighbors.GetMooreCount(v => v === States.On);
-        let dyingCount = neighbors.GetMooreCount(v => v === States.Dying);
-        let offCount = neighbors.GetMooreCount(v => v === States.Off);
 
         switch (current) {
             case States.On: /*****/ return States.Dying
