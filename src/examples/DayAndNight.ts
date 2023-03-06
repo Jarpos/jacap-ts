@@ -30,7 +30,7 @@ export namespace DayAndNight {
     export const Color = (state: States) => state as Color;
 
     export const RandomInitialization = (x: number, y: number) =>
-        Helpers.chooseRandom([States.Dead, States.Dead]);
+        Helpers.chooseRandom([States.Dead, States.Alive]);
 
     export const Settings: AutomatonFunctions<States, Neighborhood<States>> = {
         NeighborFunction: Neighborhood.GetMooreNeighborhood,
