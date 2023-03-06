@@ -1,5 +1,5 @@
 import { Neighborhood } from "../helpers/neighborhood";
-import { Helpers } from "../helpers/random";
+import { Utility } from "../helpers/utility";
 import { AutomatonDefinition, Color, AutomatonFunctions } from "../library/types";
 
 export namespace DayAndNight {
@@ -8,19 +8,15 @@ export namespace DayAndNight {
         Alive = "#717171",
     }
 
-    function isAnyOf(v, ...args) {
-        return args.find(arg => arg === v) !== undefined;
-    }
-
     export const Update = (current: States, neighbors: Neighborhood<States>) => {
         let count = neighbors.GetMooreCount(v => v === States.Alive);
 
         if (current === States.Dead) {
-            if (isAnyOf(count, 3, 6, 7, 8)) {
+            if (Utility.isAnyOf(count, 3, 6, 7, 8)) {
                 return States.Alive;
             }
         } else /* current === States.Alive */ {
-            if (isAnyOf(count, 3, 4, 6, 7, 8)) {
+            if (Utility.isAnyOf(count, 3, 4, 6, 7, 8)) {
                 return States.Alive;
             }
         }
@@ -30,7 +26,7 @@ export namespace DayAndNight {
     export const Color = (state: States) => state as Color;
 
     export const RandomInitialization = (x: number, y: number) =>
-        Helpers.chooseRandom([States.Dead, States.Alive]);
+        Utility.chooseRandom([States.Dead, States.Alive]);
 
     export const Settings: AutomatonFunctions<States, Neighborhood<States>> = {
         NeighborFunction: Neighborhood.GetMooreNeighborhood,

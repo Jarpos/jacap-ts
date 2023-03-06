@@ -1,5 +1,5 @@
 import { Neighborhood } from "../helpers/neighborhood";
-import { Helpers } from "../helpers/random";
+import { Utility } from "../helpers/utility";
 import { AutomatonDefinition, Color, AutomatonFunctions } from "../library/types";
 
 export namespace BriansBrain {
@@ -26,7 +26,7 @@ export namespace BriansBrain {
     export const Color = (state: States) => state as Color;
 
     export const RandomInitialization = (x: number, y: number) =>
-        Helpers.chooseRandom([States.On, States.Dying, States.Off]);
+        Utility.chooseRandom([States.On, States.Dying, States.Off]);
 
     export const Settings: AutomatonFunctions<States, Neighborhood<States>> = {
         NeighborFunction: Neighborhood.GetMooreNeighborhood,

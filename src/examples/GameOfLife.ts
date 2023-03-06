@@ -1,5 +1,5 @@
 import { Neighborhood } from "../helpers/neighborhood";
-import { Helpers } from "../helpers/random";
+import { Utility } from "../helpers/utility";
 import { AutomatonDefinition, Color, AutomatonFunctions } from "../library/types";
 
 export namespace GameOfLife {
@@ -24,7 +24,7 @@ export namespace GameOfLife {
     export const Color = (state: States) => state as Color;
 
     export const RandomInitialization = (x: number, y: number) =>
-        Helpers.chooseRandom([States.Alive, States.Dead]);
+        Utility.chooseRandom([States.Alive, States.Dead]);
 
     export const Settings: AutomatonFunctions<States, Neighborhood<States>> = {
         NeighborFunction: Neighborhood.GetMooreNeighborhood,
