@@ -3,10 +3,10 @@ import { BriansBrain } from "./examples/BriansBrain";
 import { DayAndNight } from "./examples/DayAndNight";
 import { GameOfLife } from "./examples/GameOfLife";
 import { RandomBlinkTest } from "./examples/RandomBlink";
-import { SimulatorCanvas } from "./library/canvas";
+import { AutomatonCanvas } from "./library/canvas";
 import { Automaton } from "./library/simulator";
 
-const canvas = new SimulatorCanvas("canvas", 750, 750, 10);
+const canvas = new AutomatonCanvas("canvas", 750, 750, 10);
 
 const Automatons = [
     GameOfLife.AutomatonSettings,
@@ -15,7 +15,7 @@ const Automatons = [
     BriansBrain.AutomatonSettings,
 ];
 
-const automaton = new Automaton(canvas.CellsX, canvas.CellsY, BriansBrain.AutomatonSettings.AutomatonFunctions)
+const automaton = new Automaton(canvas.BoardWidth, canvas.BoardHeight, BriansBrain.AutomatonSettings.AutomatonFunctions)
     .Initialize(BriansBrain.RandomInitialization);
 
 function Loop() {
