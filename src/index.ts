@@ -33,9 +33,9 @@ initControls({
     OnClickCell: (x: number, y: number) =>
         automaton.SetCell(
             x, y,
-            automaton.GetCell(x, y) === BriansBrain.States.Off
-                ? BriansBrain.States.On : BriansBrain.States.Off
-            // automaton.GetCell(x, y) === GameOfLife.States.Alive
-            //     ? GameOfLife.States.Dead : GameOfLife.States.Alive
+            Utility.getNext(
+                automaton.GetCell(x, y),
+                [BriansBrain.States.On, BriansBrain.States.Dying, BriansBrain.States.Off],
+            )
         ),
 });
