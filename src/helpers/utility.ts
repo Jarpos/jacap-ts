@@ -25,13 +25,6 @@ export namespace Utility {
         return args.find(arg => arg === v) !== undefined;
     }
 
-    export function getNext<T>(v: T, args: T[]) {
-        // let i = 0;
-        // for (; i < args.length; i++) {
-        //     if (comparator(v, args[i])) {
-        //         break;
-        //     }
-        // }
-        return args[(args.findIndex(a => a === v) + 1) % args.length];
-    }
+    export const getNext = <T>(v: T, args: T[]) =>
+        args[(args.findIndex(a => a === v) + 1) % args.length];
 }
