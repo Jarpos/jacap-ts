@@ -22,6 +22,6 @@ export interface AutomatonDefinition<CellType, NeighborType> {
     AutomatonFunctions: AutomatonFunctions<CellType, NeighborType>;
     InitializationFunctions: {
         Name: string;
-        Function: InitializationFunction<CellType>
+        Function: InitializationFunction<CellType>;
     }[];
 }
