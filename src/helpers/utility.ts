@@ -13,17 +13,14 @@ export namespace Utility {
         ).Initialize(automaton.InitializationFunctions[0].Function);
     }
 
-    export function random(max: number, min: number = 0) {
-        return Math.floor(Math.random() * max) + min;
-    }
+    export const random = (max: number, min: number = 0) =>
+        Math.floor(Math.random() * max) + min;
 
-    export function chooseRandom<T>(array: T[]) {
-        return array[random(array.length)]
-    }
+    export const chooseRandom = <T>(array: T[]) =>
+        array[random(array.length)]
 
-    export function isAnyOf<T>(v: T, ...args: T[]) {
-        return args.find(arg => arg === v) !== undefined;
-    }
+    export const isAnyOf = <T>(v: T, ...args: T[]) =>
+        args.find(arg => arg === v) !== undefined;
 
     export const getNext = <T>(v: T, args: T[]) =>
         args[(args.findIndex(a => a === v) + 1) % args.length];
