@@ -12,6 +12,8 @@ export type ColorFunction<CellType> = (cell: CellType) => Color;
 
 export type InitializationFunction<CellType> = (x: number, y: number) => CellType;
 
+export type OnClickFunction<CellType> = (value: CellType) => CellType;
+
 export interface AutomatonFunctions<CellType, NeighborType> {
     NeighborFunction: NeighborFunction<CellType, NeighborType>;
     UpdateFunction: UpdateFunction<CellType, NeighborType>;
