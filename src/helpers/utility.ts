@@ -24,4 +24,7 @@ export namespace Utility {
 
     export const getNext = <T>(v: T, args: T[]) =>
         args[(args.findIndex(a => a === v) + 1) % args.length];
+
+    export const minMax = (min: number, value: number, max: number) =>
+        Math.max(min, Math.min(value, max));
 }
