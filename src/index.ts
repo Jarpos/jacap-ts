@@ -16,19 +16,9 @@ const Automatons = [
 
 const canvas = new AutomatonCanvas("canvas", 800, 800, 10);
 const automaton = Utility.createSimulation(canvas, BriansBrain.AutomatonDefinition)
-
-function Loop() {
-    setTimeout(() => {
-        if (Running)
-            automaton.AdvanceGeneration();
-        automaton.Render(canvas.Context, canvas.Resolution);
-        Loop();
-    }, 100);
-}
-Loop();
-
-initControls({
+const settings = initControls({
     Resolution: canvas.Resolution,
+    Timeout: 50,
     SingleStep: () => automaton.AdvanceGeneration(),
     OnClickCell: (x: number, y: number) =>
         automaton.SetCell(
@@ -39,3 +29,13 @@ initControls({
             )
         ),
 });
+
+function Loop() {
+    setTimeout(() => {
+        if (Running)
+            automaton.AdvanceGeneration();
+        automaton.Render(canvas.Context, canvas.Resolution);
+        Loop();
+    }, settings.Timeout);
+}
+Loop();
