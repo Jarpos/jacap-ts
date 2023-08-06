@@ -7,17 +7,23 @@
         * {
             font-family: 'Courier New', Courier, monospace;
         }
+
+        ul {
+            list-style-type: none;
+        }
     </style>
 </head>
 
 <body>
     <canvas id="canvas"></canvas>
     <div id="controls">
-        <table>
-            <td><button id="StartStopButton">Start/Stop</button></td>
-            <td><button id="SingleStepButton">Step</button></td>
-            <td><input id="TimeoutInput" type="number" min="0" max="100"> ms</td>
-        </table>
+        <ul>
+            <li>
+                <button id="StartStopButton">Start/Stop</button>
+                <button id="SingleStepButton">Step</button>
+            </li>
+            <li><input id="TimeoutInput" type="number" min="0" max="100"> ms</li>
+        </ul>
     </div>
 </body>
 
