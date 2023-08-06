@@ -7,15 +7,14 @@ import { Utility } from "./helpers/utility";
 import { AutomatonCanvas } from "./library/canvas";
 import { AutomatonDefinition } from "./library/types";
 
+const Automatons = new Map<String, AutomatonDefinition<any, any>>([
+    ["Brians Brain", BriansBrain.AutomatonDefinition],
+    ["Day and Night", DayAndNight.AutomatonDefinition],
+    ["Game of Life", GameOfLife.AutomatonDefinition],
+    ["Random Blink Test", RandomBlinkTest.AutomatonDefinition],
+]);
 
-const Automatons = [
-    BriansBrain.AutomatonDefinition,
-    DayAndNight.AutomatonDefinition,
-    GameOfLife.AutomatonDefinition,
-    RandomBlinkTest.AutomatonDefinition,
-];
-
-let chosen = Automatons[3] as AutomatonDefinition<any, any>;
+let chosen = Automatons.get("Brians Brain");
 const canvas = new AutomatonCanvas("canvas", 800, 800, 10);
 const automaton = Utility.createSimulation(canvas, chosen)
 const settings = initControls({
