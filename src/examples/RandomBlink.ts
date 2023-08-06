@@ -19,5 +19,7 @@ export namespace RandomBlinkTest {
         InitializationFunctions: [
             { Name: "Random", Function: RandomInitialization },
         ],
+        OnClickFunction: (value) =>
+            Utility.getNext(value, [true, false]),
     };
 }

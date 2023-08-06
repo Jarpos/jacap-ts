@@ -37,5 +37,7 @@ export namespace GameOfLife {
         InitializationFunctions: [
             { Name: "Random", Function: RandomInitialization },
         ],
+        OnClickFunction: (value) =>
+            Utility.getNext(value, [States.Alive, States.Dead]),
     };
 }

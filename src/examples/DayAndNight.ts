@@ -39,5 +39,7 @@ export namespace DayAndNight {
         InitializationFunctions: [
             { Name: "Random", Function: RandomInitialization },
         ],
+        OnClickFunction: (value) =>
+            Utility.getNext(value, [States.Alive, States.Dead]),
     };
 }

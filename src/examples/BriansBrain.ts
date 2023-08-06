@@ -39,5 +39,7 @@ export namespace BriansBrain {
         InitializationFunctions: [
             { Name: "Random", Function: RandomInitialization },
         ],
+        OnClickFunction: (value) =>
+            Utility.getNext(value, [States.On, States.Dying, States.Off]),
     };
 }

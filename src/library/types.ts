@@ -26,4 +26,5 @@ export interface AutomatonDefinition<CellType, NeighborType> {
         Name: string;
         Function: InitializationFunction<CellType>;
     }[];
+    OnClickFunction: OnClickFunction<CellType>;
 }
