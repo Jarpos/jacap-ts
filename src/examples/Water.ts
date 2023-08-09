@@ -14,16 +14,24 @@ export namespace Water {
             case States.Air:
                 if (neighbors.N === States.Water)
                     return States.Water;
+                if (neighbors.E === States.Water && neighbors.SE === States.Concrete)
+                    return States.Water;
+                if (neighbors.W === States.Water && neighbors.SW === States.Concrete)
+                    return States.Water;
                 return States.Air;
 
             case States.Water:
                 if (neighbors.S === States.Air)
                     return States.Air;
-                if (neighbors.S === States.Concrete)
+                if (Utility.areAll(States.Concrete, neighbors.S, neighbors.W, neighbors.E))
                     return States.Water;
+                if (neighbors.S === States.Concrete
+                    && Utility.isAnyOf(States.Air, neighbors.W, neighbors.E))
+                    return States.Air;
                 return States.Water;
 
-            case States.Concrete: return States.Concrete
+            case States.Concrete:
+                return States.Concrete
 
             default:
                 throw new Error("Invalid state in Water");
@@ -36,7 +44,8 @@ export namespace Water {
         Utility.chooseRandom([
             States.Air, States.Air, States.Air, States.Air,
             States.Air, States.Air, States.Air, States.Air,
-            States.Water, States.Concrete
+            States.Water, States.Concrete,
+            // States.Air,
         ]);
 
     export const Settings: AutomatonFunctions<States, Neighborhood<States>> = {
@@ -51,6 +60,7 @@ export namespace Water {
             { Name: "Random", Function: RandomInitialization },
         ],
         OnClickFunction: (value) =>
-            Utility.getNext(value, [/*States.Water*/, States.Air, States.Concrete]),
+            Utility.getNext(value, [States.Water, States.Air, States.Concrete]),
+        // Utility.getNext(value, [/*States.Water*/, States.Air, States.Concrete]),
     };
 }
