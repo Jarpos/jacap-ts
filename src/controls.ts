@@ -21,7 +21,7 @@ export function initControls(settings: ControlSettings) {
 
     TimeoutInput.value = settings.Timeout.toString();
     TimeoutInput.addEventListener("change", () => {
-        settings.Timeout = Utility.minMax(0, Number(TimeoutInput.value), 1000);
+        settings.Timeout = Utility.minMax(-1, Number(TimeoutInput.value), 1000);
         TimeoutInput.value = settings.Timeout.toString();
     });
 
