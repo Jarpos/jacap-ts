@@ -1,6 +1,7 @@
 import { initControls, Running } from "./controls";
 import { BriansBrain } from "./examples/BriansBrain";
 import { DayAndNight } from "./examples/DayAndNight";
+import { Fire } from "./examples/Fire";
 import { GameOfLife } from "./examples/GameOfLife";
 import { RandomBlinkTest } from "./examples/RandomBlink";
 import { Water } from "./examples/Water";
@@ -14,9 +15,10 @@ const Automatons = new Map<String, AutomatonDefinition<any, any>>([
     ["Game of Life", /*******/ GameOfLife.AutomatonDefinition],
     ["Random Blink Test", /**/ RandomBlinkTest.AutomatonDefinition],
     ["Water", /**************/ Water.AutomatonDefinition],
+    ["Fire", /***************/ Fire.AutomatonDefinition]
 ]);
 
-let chosen = Automatons.get("Water");
+let chosen = Automatons.get("Fire");
 const canvas = new AutomatonCanvas("canvas", 800, 800, 10);
 const automaton = Utility.createSimulation(canvas, chosen)
 const settings = initControls({
