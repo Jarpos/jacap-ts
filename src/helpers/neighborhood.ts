@@ -50,6 +50,18 @@ export class Neighborhood<T> {
         return count;
     }
 
+    public MooreReduce(accumulator: (acc: T, cur: T) => T, initialValue: T) {
+        let retv = this.NeumannReduce(accumulator, initialValue);
+
+        retv = accumulator(retv, this.NW);
+        retv = accumulator(retv, this.NE);
+        retv = accumulator(retv, this.SW);
+        retv = accumulator(retv, this.SE);
+
+        return retv;
+    }
+
+
     public GetNeumannCount(comparator: (value: T) => boolean) {
         let count = 0;
 
@@ -59,5 +71,16 @@ export class Neighborhood<T> {
         if (comparator(this.E)) count++;
 
         return count;
+    }
+
+    public NeumannReduce(accumulator: (acc: T, cur: T) => T, initialValue: T) {
+        let retv = initialValue;
+
+        retv = accumulator(retv, this.N)
+        retv = accumulator(retv, this.S)
+        retv = accumulator(retv, this.W)
+        retv = accumulator(retv, this.E)
+
+        return retv;
     }
 }
