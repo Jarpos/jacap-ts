@@ -22,6 +22,9 @@ export namespace Utility {
     export const isAnyOf = <T>(v: T, ...args: T[]) =>
         args.find(arg => arg === v) !== undefined;
 
+    export const areAll = <T>(v: T, ...args: T[]) =>
+        args.every(arg => arg === v);
+
     export const getNext = <T>(v: T, args: T[]) =>
         args[(args.findIndex(a => a === v) + 1) % args.length];
 
