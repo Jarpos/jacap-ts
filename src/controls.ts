@@ -1,5 +1,6 @@
 import { Utility } from "./helpers/utility";
 
+const Body = document.getElementsByTagName("body")[0] as HTMLBodyElement;
 const PauseButton = document.getElementById("StartStopButton") as HTMLButtonElement;
 const StepButton = document.getElementById("SingleStepButton") as HTMLButtonElement;
 const TimeoutInput = document.getElementById("TimeoutInput") as HTMLInputElement;
@@ -20,6 +21,7 @@ export interface ControlSettings {
 }
 
 export function initControls(settings: ControlSettings) {
+    Body.addEventListener("keyup", (ev) => Running = ev.key === " " ? !Running : Running);
     PauseButton.addEventListener("click", () => Running = !Running);
 
     StepButton.addEventListener("click", settings.SingleStep);
