@@ -1,4 +1,4 @@
-import { Neighborhood } from "../helpers/neighborhood";
+import { Neighborhood } from "../library/neighborhood";
 import { Utility } from "../helpers/utility";
 import { AutomatonDefinition, Color, AutomatonFunctions } from "../library/types";
 
