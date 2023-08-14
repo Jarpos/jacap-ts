@@ -1,16 +1,15 @@
-import { Neighborhood } from "../library/neighborhood";
 import { Utility } from "../helpers/utility";
-import { AutomatonDefinition, Color, AutomatonFunctions } from "../library/types";
+import { AutomatonDefinition, Color } from "../library/types";
 
 export namespace RandomBlinkTest {
-    export const Update = (current: boolean, _: Neighborhood<boolean>) => !current;
-    export const Color = (state: boolean): Color => state ? "#0f0f0f" : "#717171";
+    export const Update = (current: boolean, _: null) => !current;
+    export const Color = (state: boolean): Color => state ? "#616161" : "#717171";
 
     export const RandomInitialization = () => Utility.chooseRandom([true, false]);
 
-    export const AutomatonDefinition: AutomatonDefinition<boolean, Neighborhood<boolean>> = {
+    export const AutomatonDefinition: AutomatonDefinition<boolean, null> = {
         AutomatonFunctions: {
-            NeighborFunction: Neighborhood.GetNeumannNeighborhood,
+            NeighborFunction: (x, y) => null,
             UpdateFunction: RandomBlinkTest.Update,
             ColorFunction: RandomBlinkTest.Color,
         },
