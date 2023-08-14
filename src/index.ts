@@ -6,6 +6,7 @@ import { GameOfLife } from "./examples/GameOfLife";
 import { RandomBlinkTest } from "./examples/RandomBlink";
 import { Water } from "./examples/Water";
 import { Utility } from "./helpers/utility";
+import { Automaton } from "./library/automaton";
 import { AutomatonCanvas } from "./library/canvas";
 import { AutomatonDefinition } from "./library/types";
 
