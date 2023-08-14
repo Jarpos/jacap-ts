@@ -28,14 +28,12 @@ export namespace BriansBrain {
     export const RandomInitialization = (x: number, y: number) =>
         Utility.chooseRandom([States.On, States.Dying, States.Off]);
 
-    export const Settings: AutomatonFunctions<States, Neighborhood<States>> = {
-        NeighborFunction: Neighborhood.GetMooreNeighborhood,
-        UpdateFunction: BriansBrain.Update,
-        ColorFunction: BriansBrain.Color,
-    };
-
     export const AutomatonDefinition: AutomatonDefinition<States, Neighborhood<States>> = {
-        AutomatonFunctions: Settings,
+        AutomatonFunctions: {
+            NeighborFunction: Neighborhood.GetMooreNeighborhood,
+            UpdateFunction: BriansBrain.Update,
+            ColorFunction: BriansBrain.Color,
+        },
         InitializationFunctions: [
             { Name: "Random", Function: RandomInitialization },
         ],

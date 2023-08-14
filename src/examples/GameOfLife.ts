@@ -26,14 +26,12 @@ export namespace GameOfLife {
     export const RandomInitialization = (x: number, y: number) =>
         Utility.chooseRandom([States.Alive, States.Dead]);
 
-    export const Settings: AutomatonFunctions<States, Neighborhood<States>> = {
-        NeighborFunction: Neighborhood.GetMooreNeighborhood,
-        UpdateFunction: GameOfLife.Update,
-        ColorFunction: GameOfLife.Color,
-    };
-
     export const AutomatonDefinition: AutomatonDefinition<States, Neighborhood<States>> = {
-        AutomatonFunctions: Settings,
+        AutomatonFunctions: {
+            NeighborFunction: Neighborhood.GetMooreNeighborhood,
+            UpdateFunction: GameOfLife.Update,
+            ColorFunction: GameOfLife.Color,
+        },
         InitializationFunctions: [
             { Name: "Random", Function: RandomInitialization },
         ],

@@ -28,14 +28,12 @@ export namespace DayAndNight {
     export const RandomInitialization = (x: number, y: number) =>
         Utility.chooseRandom([States.Dead, States.Alive]);
 
-    export const Settings: AutomatonFunctions<States, Neighborhood<States>> = {
-        NeighborFunction: Neighborhood.GetMooreNeighborhood,
-        UpdateFunction: DayAndNight.Update,
-        ColorFunction: DayAndNight.Color,
-    };
-
     export const AutomatonDefinition: AutomatonDefinition<States, Neighborhood<States>> = {
-        AutomatonFunctions: Settings,
+        AutomatonFunctions: {
+            NeighborFunction: Neighborhood.GetMooreNeighborhood,
+            UpdateFunction: DayAndNight.Update,
+            ColorFunction: DayAndNight.Color,
+        },
         InitializationFunctions: [
             { Name: "Random", Function: RandomInitialization },
         ],

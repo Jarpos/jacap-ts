@@ -48,14 +48,12 @@ export namespace Water {
             // States.Air,
         ]);
 
-    export const Settings: AutomatonFunctions<States, Neighborhood<States>> = {
-        NeighborFunction: Neighborhood.GetMooreNeighborhood,
-        UpdateFunction: Water.Update,
-        ColorFunction: Water.Color,
-    };
-
     export const AutomatonDefinition: AutomatonDefinition<States, Neighborhood<States>> = {
-        AutomatonFunctions: Settings,
+        AutomatonFunctions: {
+            NeighborFunction: Neighborhood.GetMooreNeighborhood,
+            UpdateFunction: Water.Update,
+            ColorFunction: Water.Color,
+        },
         InitializationFunctions: [
             { Name: "Random", Function: RandomInitialization },
         ],

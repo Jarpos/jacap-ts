@@ -8,14 +8,12 @@ export namespace RandomBlinkTest {
 
     export const RandomInitialization = () => Utility.chooseRandom([true, false]);
 
-    export const Settings: AutomatonFunctions<boolean, Neighborhood<boolean>> = {
-        NeighborFunction: Neighborhood.GetNeumannNeighborhood,
-        UpdateFunction: RandomBlinkTest.Update,
-        ColorFunction: RandomBlinkTest.Color,
-    };
-
     export const AutomatonDefinition: AutomatonDefinition<boolean, Neighborhood<boolean>> = {
-        AutomatonFunctions: Settings,
+        AutomatonFunctions: {
+            NeighborFunction: Neighborhood.GetNeumannNeighborhood,
+            UpdateFunction: RandomBlinkTest.Update,
+            ColorFunction: RandomBlinkTest.Color,
+        },
         InitializationFunctions: [
             { Name: "Random", Function: RandomInitialization },
         ],

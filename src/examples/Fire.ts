@@ -46,14 +46,12 @@ export namespace Fire {
             States.Tree,
         ]);
 
-    export const Settings: AutomatonFunctions<States, Neighborhood<States>> = {
-        NeighborFunction: Neighborhood.GetMooreNeighborhood,
-        UpdateFunction: Fire.Update,
-        ColorFunction: Fire.Color,
-    };
-
     export const AutomatonDefinition: AutomatonDefinition<States, Neighborhood<States>> = {
-        AutomatonFunctions: Settings,
+        AutomatonFunctions: {
+            NeighborFunction: Neighborhood.GetMooreNeighborhood,
+            UpdateFunction: Fire.Update,
+            ColorFunction: Fire.Color,
+        },
         InitializationFunctions: [
             { Name: "Random", Function: RandomInitialization },
         ],
