@@ -18,16 +18,32 @@ const Automatons = new Map<String, AutomatonDefinition<any, any>>([
     ["Fire", /***************/ Fire.AutomatonDefinition]
 ]);
 
-let chosen = Automatons.get("Fire");
+const names = Array.from(Automatons.keys()).map(v => v.toString());
+const startAutomaton = Utility.chooseRandom(names);
+
 const canvas = new AutomatonCanvas("canvas", 800, 800, 10);
-const automaton = Utility.createSimulation(canvas, chosen)
+var chosen: AutomatonDefinition<any, any>;
+var automaton: Automaton<any, any>;
+
 const settings = initControls({
     Resolution: canvas.Resolution,
     Timeout: 50,
     SingleStep: () => automaton.AdvanceGeneration(),
     OnClickCell: (x: number, y: number) =>
         automaton.SetCell(x, y, chosen.OnClickFunction(automaton.GetCell(x, y))),
+
+    StartAutomaton: startAutomaton,
+    Automatons: names,
+    OnAutomatonSelect: SelectAutomaton,
 });
+
+SelectAutomaton(startAutomaton);
+Loop();
+
+function SelectAutomaton(name: string) {
+    chosen = Automatons.get(name);
+    automaton = Utility.createSimulation(canvas, chosen);
+}
 
 function Loop() {
     setTimeout(() => {
@@ -39,4 +55,3 @@ function Loop() {
         Loop();
     }, settings.Timeout);
 }
-Loop();

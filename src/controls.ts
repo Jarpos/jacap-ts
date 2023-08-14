@@ -4,6 +4,7 @@ const PauseButton = document.getElementById("StartStopButton") as HTMLButtonElem
 const StepButton = document.getElementById("SingleStepButton") as HTMLButtonElement;
 const TimeoutInput = document.getElementById("TimeoutInput") as HTMLInputElement;
 const Canvas = document.getElementById("canvas") as HTMLCanvasElement;
+const AutomatonSelection = document.getElementById("AutomatonSelection") as HTMLSelectElement;
 
 export var Running = false;
 
@@ -12,6 +13,10 @@ export interface ControlSettings {
     Timeout: number;
     SingleStep: () => void;
     OnClickCell: (x: number, y: number) => void;
+
+    StartAutomaton: string;
+    Automatons: string[];
+    OnAutomatonSelect: (name: string) => void;
 }
 
 export function initControls(settings: ControlSettings) {
@@ -31,6 +36,16 @@ export function initControls(settings: ControlSettings) {
             Math.floor(ev.offsetY / settings.Resolution)
         );
     });
+
+    AutomatonSelection.addEventListener("change",
+        () => settings.OnAutomatonSelect(AutomatonSelection.value));
+    for (const automaton of settings.Automatons) {
+        const opt = document.createElement("option");
+        opt.innerText = automaton;
+        opt.value = automaton;
+        AutomatonSelection.add(opt);
+    }
+    AutomatonSelection.value = settings.StartAutomaton;
 
     return settings;
 }
