@@ -18,9 +18,11 @@ export namespace Fire {
     export const Update = (current: States, neighbors: Neighborhood<States>) => {
         switch (current) {
             case States.Tree:
-                return catchesFire(TREE_LIKELIHOOD, neighbors) ? States.TreeFire : States.Tree;
+                return catchesFire(TREE_LIKELIHOOD, neighbors)
+                    ? States.TreeFire : States.Tree;
             case States.Grass:
-                return catchesFire(GRASS_LIKELIHOOD, neighbors) ? States.GrassFire : States.Grass;
+                return catchesFire(GRASS_LIKELIHOOD, neighbors)
+                    ? States.GrassFire : States.Grass;
 
             case States.GrassFire:
                 return neighbors.GetMooreCount((v) => isBurningOrBurned(v)) === 8
@@ -56,15 +58,15 @@ export namespace Fire {
             { Name: "Random", Function: RandomInitialization },
         ],
         OnClickFunction: (value) => {
-            // Utility.getNext(value, [States.Fire,]),
             switch (value) {
                 case States.Tree: return States.TreeFire;
                 case States.Grass: return States.GrassFire;
 
-                case States.GrassFire: return States.GrassFire;
                 case States.TreeFire: return States.TreeFire;
-                case States.BurnedGrass: return States.BurnedGrass;
+                case States.GrassFire: return States.GrassFire;
+
                 case States.BurnedTree: return States.BurnedTree;
+                case States.BurnedGrass: return States.BurnedGrass;
             }
         }
     };
