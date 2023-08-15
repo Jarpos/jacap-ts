@@ -9,7 +9,7 @@ export namespace RandomBlinkTest {
 
     export const AutomatonDefinition: AutomatonDefinition<boolean, null> = {
         AutomatonFunctions: {
-            NeighborFunction: (x, y) => null,
+            NeighborFunction: () => null,
             UpdateFunction: RandomBlinkTest.Update,
             ColorFunction: RandomBlinkTest.Color,
         },
