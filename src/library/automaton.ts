@@ -18,14 +18,9 @@ export class Automaton<CellType, NeighborType> {
     }
 
     public Initialize(initFunction: InitializationFunction<CellType>) {
-        let pb = this.PreviousBoard;
-        let cb = this.CurrentBoard;
-
-        for (let y = 0; y < pb.Height; y++) {
-            for (let x = 0; x < pb.Width; x++) {
-                const state = initFunction(x, y);
-                pb.Set(x, y, state);
-                cb.Set(x, y, state);
+        for (let y = 0; y < this.CurrentBoard.Height; y++) {
+            for (let x = 0; x < this.CurrentBoard.Width; x++) {
+                this.CurrentBoard.Set(x, y, initFunction(x, y));
             }
         }
         return this;
