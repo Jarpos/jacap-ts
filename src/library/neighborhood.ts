@@ -1,14 +1,15 @@
 import { Board } from "./board";
 
 export class Neighborhood<T> {
-    /** Northern Cell */ N: T;
-    /** Southern Cell */ S: T;
-    /** Eastern Cell  */ E: T;
-    /** Western Cell  */ W: T;
-    /** North Western Cell */ NW: T;
-    /** North Eastern Cell */ NE: T;
-    /** South Western Cell */ SW: T;
-    /** South Eastern Cell */ SE: T;
+    /** Northern Cell */ public readonly N: T;
+    /** Southern Cell */ public readonly S: T;
+    /** Eastern Cell  */ public readonly E: T;
+    /** Western Cell  */ public readonly W: T;
+
+    /** North Western Cell */ public readonly NW: T;
+    /** North Eastern Cell */ public readonly NE: T;
+    /** South Western Cell */ public readonly SW: T;
+    /** South Eastern Cell */ public readonly SE: T;
 
     constructor(n: T, s: T, w: T, e: T, nw?: T, ne?: T, sw?: T, se?: T) {
         this.N = n;
