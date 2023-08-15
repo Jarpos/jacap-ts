@@ -11,6 +11,17 @@ export class Neighborhood<T> {
     /** South Western Cell */ public readonly SW: T;
     /** South Eastern Cell */ public readonly SE: T;
 
+    /**
+     * @param n northern cell
+     * @param s southern cell
+     * @param w western cell
+     * @param e eastern cell
+     *
+     * @param nw north-western cell
+     * @param ne north-eastern cell
+     * @param sw south-western cell
+     * @param se south-eastern cell
+     */
     constructor(n: T, s: T, w: T, e: T, nw?: T, ne?: T, sw?: T, se?: T) {
         this.N = n;
         this.S = s;
@@ -23,6 +34,12 @@ export class Neighborhood<T> {
         this.SE = se;
     }
 
+    /**
+     * @param board board to get neighborhood from
+     * @param x x-coordinate of central cell
+     * @param y y-coordinate of central cell
+     * @returns Moore Neighborhood (all 8 surrounding cells)
+     */
     static GetMooreNeighborhood<T>(board: Board<T>, x: number, y: number) {
         return new Neighborhood<T>(
             board.Get(x, y - 1), board.Get(x, y + 1),
@@ -33,6 +50,12 @@ export class Neighborhood<T> {
         );
     }
 
+    /**
+     * @param board board to get neighborhood from
+     * @param x x-coordinate of central cell
+     * @param y y-coordinate of central cell
+     * @returns Neumann Neighborhood (n, s, e, w cells)
+     */
     static GetNeumannNeighborhood<T>(board: Board<T>, x: number, y: number) {
         return new Neighborhood<T>(
             board.Get(x, y - 1), board.Get(x, y + 1),
@@ -40,6 +63,10 @@ export class Neighborhood<T> {
         );
     }
 
+    /**
+     * @param comparator function to decide if cell should be included in the count
+     * @returns Moore count as decided by `comparator`
+     */
     public GetMooreCount(comparator: (value: T) => boolean) {
         let count = this.GetNeumannCount(comparator);
 
@@ -51,6 +78,11 @@ export class Neighborhood<T> {
         return count;
     }
 
+    /**
+     * @param accumulator acc function
+     * @param initialValue init value
+     * @returns left folded moore neighborhood
+     */
     public MooreReduce(accumulator: (acc: T, cur: T) => T, initialValue: T) {
         let retv = this.NeumannReduce(accumulator, initialValue);
 
@@ -62,7 +94,10 @@ export class Neighborhood<T> {
         return retv;
     }
 
-
+    /**
+     * @param comparator function to decide if cell should be included in the count
+     * @returns Neumann count as decided by `comparator`
+     */
     public GetNeumannCount(comparator: (value: T) => boolean) {
         let count = 0;
 
@@ -74,6 +109,11 @@ export class Neighborhood<T> {
         return count;
     }
 
+    /**
+     * @param accumulator acc function
+     * @param initialValue init value
+     * @returns left folded neumann neighborhood
+     */
     public NeumannReduce(accumulator: (acc: T, cur: T) => T, initialValue: T) {
         let retv = initialValue;
 
