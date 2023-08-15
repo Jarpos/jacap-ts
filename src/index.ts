@@ -16,7 +16,7 @@ const Automatons = new Map<String, AutomatonDefinition<any, any>>([
     ["Game of Life", /*******/ GameOfLife.AutomatonDefinition],
     ["Random Blink Test", /**/ RandomBlinkTest.AutomatonDefinition],
     ["Water", /**************/ Water.AutomatonDefinition],
-    ["Fire", /***************/ Fire.AutomatonDefinition]
+    ["Fire", /***************/ Fire.AutomatonDefinition],
 ]);
 
 const names = Array.from(Automatons.keys()).map(v => v.toString());
