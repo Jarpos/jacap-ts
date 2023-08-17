@@ -1,63 +1,50 @@
 import { Neighborhood } from "../library/neighborhood";
 import { Utility } from "../helpers/utility";
-import { AutomatonDefinition, Color, AutomatonFunctions } from "../library/types";
+import { AutomatonDefinition, Color } from "../library/types";
 
-// TODO: Rework/fix
 export namespace Explosions {
-    export enum BaseStates {
-        Wall = -1,
-        Floor = 0,
-        MaxExplosion = 1,
+    export enum States {
+        Explosion = "#aa1111",
+        Exploded = "#0f0f0f",
+        Floor = "#444444",
+        Wall = "#888888",
     }
 
-    export const Update = (current: number, neighbors: Neighborhood<number>) => {
-        if (current === BaseStates.Wall) {
-            const explosionStrength = neighbors.NeumannReduce(
-                (a, c) => a + (c >= 0 ? c : 0), 0);
+    export const Update = (current: States, neighbors: Neighborhood<States>) => {
+        switch (current) {
+            case States.Explosion: return States.Exploded;
+            case States.Exploded: return States.Exploded;
+            case States.Wall: return States.Wall;
 
-            if (explosionStrength > 0)
-                return explosionStrength * .25;
-            return BaseStates.Wall;
+            case States.Floor:
+                if (neighbors.GetNeumannCount(v => v === States.Explosion))
+                    return States.Explosion;
+                return States.Floor;
         }
-
-        if (current === BaseStates.Floor) {
-            const explosionStrength = neighbors.NeumannReduce((a, c) => a + c, 0);
-            if (explosionStrength > 0)
-                return explosionStrength * .5;
-            return BaseStates.Floor;
-        }
-
-        if (current === BaseStates.MaxExplosion)
-            return current - .9;
-
-        return current - .1;
     }
 
-    export const Color = (state: number) => {
-        if (state === BaseStates.Wall)
-            return "#717171" as Color;
-        if (state === BaseStates.Floor)
-            return "#0f0f0f" as Color;
-        return `rgb(${256 / state + 128}, 0, 0)` as Color;
+    export const Color = (state: States) => {
+        return state as Color;
     };
 
     export const RandomInitialization = (x: number, y: number) =>
+        // (Math.sin(y * x) * Math.tan(x * y)) * Math.random() > .0001
+        //     ? States.Floor : States.Wall;
         Utility.chooseRandom([
-            BaseStates.Floor, BaseStates.Floor, BaseStates.Floor, BaseStates.Floor, BaseStates.Floor,
-            BaseStates.Floor, BaseStates.Floor, BaseStates.Floor, BaseStates.Floor, BaseStates.Floor,
-            BaseStates.Wall,
+            States.Floor, States.Floor,
+            States.Wall
         ]);
 
-    export const AutomatonDefinition: AutomatonDefinition<BaseStates, Neighborhood<BaseStates>> = {
+    export const AutomatonDefinition: AutomatonDefinition<States, Neighborhood<States>> = {
         AutomatonFunctions: {
             NeighborFunction: Neighborhood.GetNeumannNeighborhood,
-            UpdateFunction: Explosions.Update,
-            ColorFunction: Explosions.Color,
+            UpdateFunction: Update,
+            ColorFunction: Color,
         },
         InitializationFunctions: [
             { Name: "Random", Function: RandomInitialization },
         ],
         OnClickFunction: (value) =>
-            Utility.getNext(value, [BaseStates.MaxExplosion]),
+            Utility.getNext(value, [States.Explosion]),
     };
 }
