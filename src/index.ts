@@ -1,4 +1,9 @@
 import { initControls, Running } from "./controls";
+import { Utility } from "./helpers/utility";
+import { Automaton } from "./library/automaton";
+import { AutomatonCanvas } from "./library/canvas";
+import { AutomatonDefinition } from "./library/types";
+
 import { BriansBrain } from "./examples/BriansBrain";
 import { DayAndNight } from "./examples/DayAndNight";
 import { Explosions } from "./examples/Explosions";
@@ -6,19 +11,15 @@ import { Fire } from "./examples/Fire";
 import { GameOfLife } from "./examples/GameOfLife";
 import { RandomBlinkTest } from "./examples/RandomBlink";
 import { Water } from "./examples/Water";
-import { Utility } from "./helpers/utility";
-import { Automaton } from "./library/automaton";
-import { AutomatonCanvas } from "./library/canvas";
-import { AutomatonDefinition } from "./library/types";
 
 const Automatons = new Map<String, AutomatonDefinition<any, any>>([
     ["Brians Brain", /*******/ BriansBrain.AutomatonDefinition],
     ["Day and Night", /******/ DayAndNight.AutomatonDefinition],
+    ["Explosions", /*********/ Explosions.AutomatonDefinition],
+    ["Fire", /***************/ Fire.AutomatonDefinition],
     ["Game of Life", /*******/ GameOfLife.AutomatonDefinition],
     ["Random Blink Test", /**/ RandomBlinkTest.AutomatonDefinition],
     ["Water", /**************/ Water.AutomatonDefinition],
-    ["Fire", /***************/ Fire.AutomatonDefinition],
-    ["Explosions", /*********/ Explosions.AutomatonDefinition],
 ]);
 
 const names = Array.from(Automatons.keys()).map(v => v.toString());
