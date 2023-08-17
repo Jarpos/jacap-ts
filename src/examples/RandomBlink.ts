@@ -10,8 +10,8 @@ export namespace RandomBlinkTest {
     export const AutomatonDefinition: AutomatonDefinition<boolean, null> = {
         AutomatonFunctions: {
             NeighborFunction: () => null,
-            UpdateFunction: RandomBlinkTest.Update,
-            ColorFunction: RandomBlinkTest.Color,
+            UpdateFunction: Update,
+            ColorFunction: Color,
         },
         InitializationFunctions: [
             { Name: "Random", Function: RandomInitialization },

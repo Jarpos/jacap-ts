@@ -1,6 +1,6 @@
 import { Neighborhood } from "../library/neighborhood";
 import { Utility } from "../helpers/utility";
-import { AutomatonDefinition, Color, AutomatonFunctions } from "../library/types";
+import { AutomatonDefinition, Color } from "../library/types";
 
 export namespace DayAndNight {
     export enum States {
@@ -31,8 +31,8 @@ export namespace DayAndNight {
     export const AutomatonDefinition: AutomatonDefinition<States, Neighborhood<States>> = {
         AutomatonFunctions: {
             NeighborFunction: Neighborhood.GetMooreNeighborhood,
-            UpdateFunction: DayAndNight.Update,
-            ColorFunction: DayAndNight.Color,
+            UpdateFunction: Update,
+            ColorFunction: Color,
         },
         InitializationFunctions: [
             { Name: "Random", Function: RandomInitialization },

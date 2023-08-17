@@ -1,6 +1,6 @@
 import { Neighborhood } from "../library/neighborhood";
 import { Utility } from "../helpers/utility";
-import { AutomatonDefinition, Color, AutomatonFunctions } from "../library/types";
+import { AutomatonDefinition, Color } from "../library/types";
 
 export namespace BriansBrain {
     export enum States {
@@ -31,8 +31,8 @@ export namespace BriansBrain {
     export const AutomatonDefinition: AutomatonDefinition<States, Neighborhood<States>> = {
         AutomatonFunctions: {
             NeighborFunction: Neighborhood.GetMooreNeighborhood,
-            UpdateFunction: BriansBrain.Update,
-            ColorFunction: BriansBrain.Color,
+            UpdateFunction: Update,
+            ColorFunction: Color,
         },
         InitializationFunctions: [
             { Name: "Random", Function: RandomInitialization },

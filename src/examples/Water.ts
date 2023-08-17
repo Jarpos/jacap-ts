@@ -1,6 +1,6 @@
 import { Neighborhood } from "../library/neighborhood";
 import { Utility } from "../helpers/utility";
-import { AutomatonDefinition, Color, AutomatonFunctions } from "../library/types";
+import { AutomatonDefinition, Color } from "../library/types";
 
 export namespace Water {
     export enum States {
@@ -51,8 +51,8 @@ export namespace Water {
     export const AutomatonDefinition: AutomatonDefinition<States, Neighborhood<States>> = {
         AutomatonFunctions: {
             NeighborFunction: Neighborhood.GetMooreNeighborhood,
-            UpdateFunction: Water.Update,
-            ColorFunction: Water.Color,
+            UpdateFunction: Update,
+            ColorFunction: Color,
         },
         InitializationFunctions: [
             { Name: "Random", Function: RandomInitialization },
