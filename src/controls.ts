@@ -22,18 +22,22 @@ export interface ControlSettings {
 }
 
 export function initControls(settings: ControlSettings) {
+    // Start/Stop
     Body.addEventListener("keyup", (ev) => Running = ev.key === " " ? !Running : Running);
     PauseButton.addEventListener("click", () => Running = !Running);
 
+    // Manual stepping
     StepButton.addEventListener("click", settings.SingleStep);
     StepMultipleButton.addEventListener("click", () => Utility.call(settings.SingleStep, 10));
 
+    // Timeouts
     TimeoutInput.value = settings.Timeout.toString();
     TimeoutInput.addEventListener("change", () => {
         settings.Timeout = Utility.minMax(-1, Number(TimeoutInput.value), 1000);
         TimeoutInput.value = settings.Timeout.toString();
     });
 
+    // Canvas clicking
     Canvas.addEventListener("click", (ev) => {
         settings.OnClickCell(
             Math.floor(ev.offsetX / settings.Resolution),
@@ -41,6 +45,7 @@ export function initControls(settings: ControlSettings) {
         );
     });
 
+    // Automaton selection
     AutomatonSelection.addEventListener("change",
         () => settings.OnAutomatonSelect(AutomatonSelection.value));
     for (const automaton of settings.Automatons) {
