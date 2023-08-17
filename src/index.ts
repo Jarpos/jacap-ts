@@ -53,8 +53,10 @@ function Loop() {
     setTimeout(() => {
         // @TODO: find a way to make it run properly at max speed
         // (no, timeout 0 doesn't seem to do that for some reason)
-        if (Running)
+        if (Running) {
             automaton.AdvanceGeneration();
+        }
+
         automaton.Render(canvas.Context, canvas.Resolution);
         Loop();
     }, settings.Timeout);
