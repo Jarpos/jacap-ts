@@ -30,4 +30,9 @@ export namespace Utility {
 
     export const minMax = (min: number, value: number, max: number) =>
         Math.max(min, Math.min(value, max));
+
+    export const call = <T>(f: () => T, x: number) => {
+        for (let i = 0; i < x; i++)
+            f();
+    }
 }
