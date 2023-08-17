@@ -3,6 +3,7 @@ import { Utility } from "./helpers/utility";
 const Body = document.getElementsByTagName("body")[0] as HTMLBodyElement;
 const PauseButton = document.getElementById("StartStopButton") as HTMLButtonElement;
 const StepButton = document.getElementById("SingleStepButton") as HTMLButtonElement;
+const StepMultipleButton = document.getElementById("StepMultipleButton") as HTMLButtonElement;
 const TimeoutInput = document.getElementById("TimeoutInput") as HTMLInputElement;
 const Canvas = document.getElementById("canvas") as HTMLCanvasElement;
 const AutomatonSelection = document.getElementById("AutomatonSelection") as HTMLSelectElement;
@@ -25,6 +26,7 @@ export function initControls(settings: ControlSettings) {
     PauseButton.addEventListener("click", () => Running = !Running);
 
     StepButton.addEventListener("click", settings.SingleStep);
+    StepMultipleButton.addEventListener("click", () => Utility.call(settings.SingleStep, 10));
 
     TimeoutInput.value = settings.Timeout.toString();
     TimeoutInput.addEventListener("change", () => {
