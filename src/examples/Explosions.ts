@@ -23,9 +23,7 @@ export namespace Explosions {
         }
     }
 
-    export const Color = (state: States) => {
-        return state as Color;
-    };
+    export const Color = (state: States) => state as Color;
 
     export const RandomInitialization = (x: number, y: number) =>
         // (Math.sin(y * x) * Math.tan(x * y)) * Math.random() > .0001
