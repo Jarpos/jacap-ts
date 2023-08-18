@@ -4,7 +4,7 @@
             "ES2022",
             "DOM"
         ],
-        "downlevelIteration": true,
+        "downlevelIteration": false,
         "target": "ES2022"
     }
 }
