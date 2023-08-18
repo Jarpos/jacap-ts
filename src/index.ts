@@ -12,7 +12,7 @@ import { GameOfLife } from "./examples/GameOfLife";
 import { RandomBlinkTest } from "./examples/RandomBlink";
 import { Water } from "./examples/Water";
 
-const Automatons = new Map<String, AutomatonDefinition<any, any>>([
+const Automatons = new Map<string, AutomatonDefinition<any, any>>([
     ["Brians Brain", /*******/ BriansBrain.AutomatonDefinition],
     ["Day and Night", /******/ DayAndNight.AutomatonDefinition],
     ["Explosions", /*********/ Explosions.AutomatonDefinition],
@@ -22,7 +22,7 @@ const Automatons = new Map<String, AutomatonDefinition<any, any>>([
     ["Water", /**************/ Water.AutomatonDefinition],
 ]);
 
-const names = Array.from(Automatons.keys()).map(v => v.toString());
+const names = Array.from(Automatons.keys());
 const startAutomaton = Utility.chooseRandom(names);
 
 const canvas = new AutomatonCanvas("canvas", 800, 800, 10);
