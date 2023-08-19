@@ -16,15 +16,15 @@ This is a very simple project to play around with some simple cellular automaton
 - Add support for rulestrings (https://conwaylife.com/wiki/Rulestring)
 
 ## Automatons
-Name              | Explanation
------------------ | -----------
-Brians Brain      | https://conwaylife.com/wiki/OCA:Brian's_Brain
-Day and Night     | https://conwaylife.com/wiki/OCA:Day_%26_Night
-Explosions        | Just some walls and a floor, where you can place "explosions" that expand outwards
-Fire              | A grassy field and some trees, which you can set on fire
-Game of Life      | https://conwaylife.com/wiki/Conway%27s_Game_of_Life
-Random Blink Test | Randomly initialized field, which blinks
-Water             | Some falling drops of water
+| Name              | Explanation                                                                        |
+| ----------------- | ---------------------------------------------------------------------------------- |
+| Brians Brain      | https://conwaylife.com/wiki/OCA:Brian's_Brain                                      |
+| Day and Night     | https://conwaylife.com/wiki/OCA:Day_%26_Night                                      |
+| Explosions        | Just some walls and a floor, where you can place "explosions" that expand outwards |
+| Fire              | A grassy field and some trees, which you can set on fire                           |
+| Game of Life      | https://conwaylife.com/wiki/Conway%27s_Game_of_Life                                |
+| Random Blink Test | Randomly initialized field, which blinks                                           |
+| Water             | Some falling drops of water                                                        |
 
 ### Ideas for others
 - Seeds (https://conwaylife.com/wiki/OCA:Seeds)
