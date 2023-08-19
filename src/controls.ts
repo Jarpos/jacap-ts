@@ -56,5 +56,9 @@ export function initControls(settings: ControlSettings) {
     }
     AutomatonSelection.value = settings.StartAutomaton;
 
+    // Reinitialize automaton
+    ReinitializeButton.addEventListener("click",
+        () => settings.OnAutomatonSelect(AutomatonSelection.value))
+
     return settings;
 }
