@@ -11,6 +11,7 @@ import { Fire } from "./examples/Fire";
 import { GameOfLife } from "./examples/GameOfLife";
 import { RandomBlinkTest } from "./examples/RandomBlink";
 import { Water } from "./examples/Water";
+import { PlayingAround } from "./examples/PlayingAround";
 
 const Automatons = new Map<string, AutomatonDefinition<any, any>>([
     ["Brians Brain", /*******/ BriansBrain.AutomatonDefinition],
@@ -18,6 +19,7 @@ const Automatons = new Map<string, AutomatonDefinition<any, any>>([
     ["Explosions", /*********/ Explosions.AutomatonDefinition],
     ["Fire", /***************/ Fire.AutomatonDefinition],
     ["Game of Life", /*******/ GameOfLife.AutomatonDefinition],
+    ["Playing Around", /*****/ PlayingAround.AutomatonDefinition],
     ["Random Blink Test", /**/ RandomBlinkTest.AutomatonDefinition],
     ["Water", /**************/ Water.AutomatonDefinition],
 ]);
