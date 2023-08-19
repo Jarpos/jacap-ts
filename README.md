@@ -7,6 +7,7 @@ This is a very simple project to play around with some simple cellular automaton
   - [Todo](#todo)
   - [Automatons](#automatons)
     - [Ideas for others](#ideas-for-others)
+  - [Automaton Setup](#automaton-setup)
 
 ## Todo
 - Rework controls
@@ -27,3 +28,30 @@ Water             | Some falling drops of water
 
 ### Ideas for others
 - Seeds (https://conwaylife.com/wiki/OCA:Seeds)
+
+## Automaton Setup
+This is the basic "layout"/"setup" for an automaton. (Everything that needs replacing is marked with `__` in front of it)
+
+```ts
+import { Utility } from "../helpers/utility";
+import { AutomatonDefinition, Color } from "../library/types";
+
+export namespace __AUTOMATON_NAME {
+    export const Update = (current: __CELL_TYPE, _: __NEIGHBORHOOD_TYPE) => __NEW_VALUE;
+    export const Color = (state: __CELL_TYPE): Color => __COLOR;
+
+    export const RandomInitialization = (x: number, y: number) => Utility.chooseRandom(__VALUES);
+
+    export const AutomatonDefinition: AutomatonDefinition<__CELL_TYPE, __NEIGHBORHOOD_TYPE> = {
+        AutomatonFunctions: {
+            NeighborFunction: __NEIGHBORHOOD_FUNCTION,
+            UpdateFunction: Update,
+            ColorFunction: Color,
+        },
+        InitializationFunctions: [
+            { Name: "Random", Function: RandomInitialization },
+        ],
+        OnClickFunction: (value) => __NEW_VALUE,
+    };
+}
+```
