@@ -12,7 +12,6 @@ This is a very simple project to play around with some simple cellular automaton
 ## Todo
 - Rework controls
 - Add more controls
-- Add ability to choose automaton via url
 - Add support for rulestrings (https://conwaylife.com/wiki/Rulestring)
 
 ## Automatons

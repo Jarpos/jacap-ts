@@ -23,7 +23,8 @@ const Automatons = new Map<string, AutomatonDefinition<any, any>>([
 ]);
 
 const names = Array.from(Automatons.keys());
-const startAutomaton = Utility.chooseRandom(names);
+const query = window.location.search.substring(1).replaceAll("%20", " ");
+const startAutomaton = query ? query : Utility.chooseRandom(names);
 
 const canvas = new AutomatonCanvas("canvas", 800, 800, 10);
 var chosen: AutomatonDefinition<any, any>;
