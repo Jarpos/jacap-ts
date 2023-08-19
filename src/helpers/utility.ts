@@ -13,8 +13,12 @@ export namespace Utility {
         ).Initialize(automaton.InitializationFunctions[0].Function);
     }
 
-    export const random = (max: number, min: number = 0) =>
-        Math.floor(Math.random() * max) + min;
+    // TODO: Think about rework
+    export const random = (max: number, min: number = 0) => {
+        if (max < min)
+            throw new RangeError(`max is smaller than min (max=${max} < min=${min})`)
+        return Math.floor(Math.random() * max) + min;
+    }
 
     export const chooseRandom = <T>(array: T[]) =>
         array[random(array.length)]
