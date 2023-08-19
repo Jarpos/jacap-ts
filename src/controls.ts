@@ -7,6 +7,7 @@ const StepMultipleButton = document.getElementById("StepMultipleButton") as HTML
 const TimeoutInput = document.getElementById("TimeoutInput") as HTMLInputElement;
 const Canvas = document.getElementById("canvas") as HTMLCanvasElement;
 const AutomatonSelection = document.getElementById("AutomatonSelection") as HTMLSelectElement;
+const ReinitializeButton = document.getElementById("ReinitializeButton") as HTMLButtonElement;
 
 export var Running = false;
 
