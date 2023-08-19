@@ -26,7 +26,7 @@ const names = Array.from(Automatons.keys());
 const query = window.location.search.substring(1).replaceAll("%20", " ");
 const startAutomaton = query ? query : Utility.chooseRandom(names);
 
-const canvas = new AutomatonCanvas("canvas", 800, 800, 10);
+const canvas = new AutomatonCanvas("canvas", 1000, 800, 10);
 var chosen: AutomatonDefinition<any, any>;
 var automaton: Automaton<any, any>;
 
