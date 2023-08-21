@@ -1,4 +1,5 @@
 import { initControls, Running } from "./controls";
+import { Recording } from "./helpers/recording";
 import { Utility } from "./helpers/utility";
 import { Automaton } from "./library/automaton";
 import { AutomatonCanvas } from "./library/canvas";
@@ -11,7 +12,6 @@ import { Fire } from "./examples/Fire";
 import { GameOfLife } from "./examples/GameOfLife";
 import { RandomBlinkTest } from "./examples/RandomBlink";
 import { Water } from "./examples/Water";
-import { PlayingAround } from "./examples/PlayingAround";
 
 const Automatons = new Map<string, AutomatonDefinition<any, any>>([
     ["Brians Brain", /*******/ BriansBrain.AutomatonDefinition],
