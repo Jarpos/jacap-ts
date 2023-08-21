@@ -59,7 +59,7 @@ export function initControls(settings: ControlSettings) {
 
     // Reinitialize automaton
     ReinitializeButton.addEventListener("click",
-        () => settings.OnAutomatonSelect(AutomatonSelection.value))
+        () => settings.OnAutomatonSelect(AutomatonSelection.value));
 
     return settings;
 }
