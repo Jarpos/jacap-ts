@@ -4,7 +4,7 @@ import { AutomatonDefinition, Color } from "../library/types";
 
 export namespace PlayingAround {
     // TODO: Rework this function... maybe add multiple update funcs to choose from?
-    export const Update = (current: number, neighbors: Neighborhood<number>) => {
+    const Update = (current: number, neighbors: Neighborhood<number>) => {
         const n: number = 4;
         switch (n) {
             case 0:
@@ -54,10 +54,10 @@ export namespace PlayingAround {
         throw new RangeError(`Value ${n} not in case range`);
     }
 
-    export const Color = (state: number): Color =>
+    const Color = (state: number): Color =>
         `rgb(${0}, ${state * 50 + 50}, ${state * 50 + 50})`;
 
-    export const RandomInitialization = () => Utility.random_f(1, -1);
+    const RandomInitialization = () => Utility.random_f(1, -1);
 
     export const AutomatonDefinition: AutomatonDefinition<number, Neighborhood<number>> = {
         AutomatonFunctions: {

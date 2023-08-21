@@ -3,13 +3,13 @@ import { Utility } from "../helpers/utility";
 import { AutomatonDefinition, Color } from "../library/types";
 
 export namespace Water {
-    export enum States {
+    enum States {
         Air = "#0f0f0f",
         Water = "#0066ff",
         Concrete = "#717171",
     }
 
-    export const Update = (current: States, neighbors: Neighborhood<States>) => {
+    const Update = (current: States, neighbors: Neighborhood<States>) => {
         switch (current) {
             case States.Air:
                 if (neighbors.N === States.Water)
@@ -38,9 +38,9 @@ export namespace Water {
         }
     }
 
-    export const Color = (state: States) => state as Color;
+    const Color = (state: States) => state as Color;
 
-    export const RandomInitialization = (x: number, y: number) =>
+    const RandomInitialization = (x: number, y: number) =>
         Utility.chooseRandom([
             States.Air, States.Air, States.Air, States.Air,
             States.Air, States.Air, States.Air, States.Air,

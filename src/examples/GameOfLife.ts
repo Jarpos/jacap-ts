@@ -3,12 +3,12 @@ import { Utility } from "../helpers/utility";
 import { AutomatonDefinition, Color } from "../library/types";
 
 export namespace GameOfLife {
-    export enum States {
+    enum States {
         Dead = "#0f0f0f",
         Alive = "#717171",
     }
 
-    export const Update = (current: States, neighbors: Neighborhood<States>) => {
+    const Update = (current: States, neighbors: Neighborhood<States>) => {
         let count = neighbors.GetMooreCount(v => v === States.Alive);
 
         if (current === States.Alive && count < 2) {
@@ -21,9 +21,9 @@ export namespace GameOfLife {
         return current;
     }
 
-    export const Color = (state: States) => state as Color;
+    const Color = (state: States) => state as Color;
 
-    export const RandomInitialization = (x: number, y: number) =>
+    const RandomInitialization = (x: number, y: number) =>
         Utility.chooseRandom([States.Alive, States.Dead]);
 
     export const AutomatonDefinition: AutomatonDefinition<States, Neighborhood<States>> = {

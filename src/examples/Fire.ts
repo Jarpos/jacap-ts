@@ -6,7 +6,7 @@ export namespace Fire {
     const TREE_LIKELIHOOD = .01 as const;
     const GRASS_LIKELIHOOD = .25 as const;
 
-    export enum States {
+    enum States {
         Tree = "#003300",
         Grass = "#006600",
         GrassFire = "#b30000",
@@ -15,7 +15,7 @@ export namespace Fire {
         BurnedTree = "#663300",
     }
 
-    export const Update = (current: States, neighbors: Neighborhood<States>) => {
+    const Update = (current: States, neighbors: Neighborhood<States>) => {
         switch (current) {
             case States.Tree:
                 return catchesFire(TREE_LIKELIHOOD, neighbors)
@@ -39,9 +39,9 @@ export namespace Fire {
         }
     }
 
-    export const Color = (state: States) => state as Color;
+    const Color = (state: States) => state as Color;
 
-    export const RandomInitialization = (x: number, y: number) =>
+    const RandomInitialization = (x: number, y: number) =>
         Utility.chooseRandom([
             States.Grass, States.Grass, States.Grass, States.Grass, States.Grass,
             States.Grass, States.Grass, States.Grass, States.Grass, States.Grass,

@@ -3,14 +3,14 @@ import { Utility } from "../helpers/utility";
 import { AutomatonDefinition, Color } from "../library/types";
 
 export namespace Explosions {
-    export enum States {
+    enum States {
         Explosion = "#aa1111",
         Exploded = "#0f0f0f",
         Floor = "#444444",
         Wall = "#888888",
     }
 
-    export const Update = (current: States, neighbors: Neighborhood<States>) => {
+    const Update = (current: States, neighbors: Neighborhood<States>) => {
         switch (current) {
             case States.Explosion: return States.Exploded;
             case States.Exploded: return States.Exploded;
@@ -23,9 +23,9 @@ export namespace Explosions {
         }
     }
 
-    export const Color = (state: States) => state as Color;
+    const Color = (state: States) => state as Color;
 
-    export const RandomInitialization = (x: number, y: number) =>
+    const RandomInitialization = (x: number, y: number) =>
         // (Math.sin(y * x) * Math.tan(x * y)) * Math.random() > .0001
         //     ? States.Floor : States.Wall;
         Utility.chooseRandom([

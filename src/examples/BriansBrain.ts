@@ -3,13 +3,13 @@ import { Utility } from "../helpers/utility";
 import { AutomatonDefinition, Color } from "../library/types";
 
 export namespace BriansBrain {
-    export enum States {
+    enum States {
         On = "#717171",
         Dying = "#414141",
         Off = "#0f0f0f",
     }
 
-    export const Update = (current: States, neighbors: Neighborhood<States>) => {
+    const Update = (current: States, neighbors: Neighborhood<States>) => {
         let onCount = neighbors.GetMooreCount(v => v === States.On);
 
         switch (current) {
@@ -23,9 +23,9 @@ export namespace BriansBrain {
         return States.Off;
     }
 
-    export const Color = (state: States) => state as Color;
+    const Color = (state: States) => state as Color;
 
-    export const RandomInitialization = (x: number, y: number) =>
+    const RandomInitialization = (x: number, y: number) =>
         Utility.chooseRandom([States.On, States.Dying, States.Off]);
 
     export const AutomatonDefinition: AutomatonDefinition<States, Neighborhood<States>> = {

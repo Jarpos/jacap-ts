@@ -3,12 +3,12 @@ import { Utility } from "../helpers/utility";
 import { AutomatonDefinition, Color } from "../library/types";
 
 export namespace DayAndNight {
-    export enum States {
+    enum States {
         Dead = "#0f0f0f",
         Alive = "#717171",
     }
 
-    export const Update = (current: States, neighbors: Neighborhood<States>) => {
+    const Update = (current: States, neighbors: Neighborhood<States>) => {
         let count = neighbors.GetMooreCount(v => v === States.Alive);
 
         if (current === States.Dead) {
@@ -23,9 +23,9 @@ export namespace DayAndNight {
         return States.Dead;
     }
 
-    export const Color = (state: States) => state as Color;
+    const Color = (state: States) => state as Color;
 
-    export const RandomInitialization = (x: number, y: number) =>
+    const RandomInitialization = (x: number, y: number) =>
         Utility.chooseRandom([States.Dead, States.Alive]);
 
     export const AutomatonDefinition: AutomatonDefinition<States, Neighborhood<States>> = {
