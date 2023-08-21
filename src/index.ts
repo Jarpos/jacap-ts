@@ -1,4 +1,5 @@
 import { initControls, Running } from "./controls";
+import { Recording } from "./helpers/recording";
 import { Utility } from "./helpers/utility";
 import { Automaton } from "./library/automaton";
 import { AutomatonCanvas } from "./library/canvas";
