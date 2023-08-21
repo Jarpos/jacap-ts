@@ -15,20 +15,22 @@ export namespace Utility {
 
     // TODO: Think about rework
     export const random = (max: number, min: number = 0) => {
-        if (max < min)
-            throw new RangeError(`max is smaller than min (max=${max} < min=${min})`)
+        if (max < min) {
+            throw new RangeError(`max is smaller than min (max=${max} < min=${min})`);
+        }
         return Math.floor(Math.random() * max) + min;
     }
 
     // TODO: Think about rework
     export const random_f = (max: number, min: number = 0) => {
-        if (max < min)
-            throw new RangeError(`max is smaller than min (max=${max} < min=${min})`)
+        if (max < min) {
+            throw new RangeError(`max is smaller than min (max=${max} < min=${min})`);
+        }
         return Math.random() * max + min;
     }
 
     export const chooseRandom = <T>(array: T[]) =>
-        array[random(array.length)]
+        array[random(array.length)];
 
     export const isAnyOf = <T>(v: T, ...args: T[]) =>
         args.find(arg => arg === v) !== undefined;
@@ -42,8 +44,9 @@ export namespace Utility {
     export const minMax = (min: number, value: number, max: number) =>
         Math.max(min, Math.min(value, max));
 
-    export const call = <T>(f: () => T, x: number) => {
-        for (let i = 0; i < x; i++)
+    export const call = (f: () => void, x: number) => {
+        for (let i = 0; i < x; i++) {
             f();
+        }
     }
 }
