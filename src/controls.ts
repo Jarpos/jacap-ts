@@ -8,6 +8,7 @@ const TimeoutInput = document.getElementById("TimeoutInput") as HTMLInputElement
 const Canvas = document.getElementById("canvas") as HTMLCanvasElement;
 const AutomatonSelection = document.getElementById("AutomatonSelection") as HTMLSelectElement;
 const ReinitializeButton = document.getElementById("ReinitializeButton") as HTMLButtonElement;
+const RecordingButton = document.getElementById("RecordingButton") as HTMLInputElement;
 
 export var Running = false;
 
@@ -20,6 +21,8 @@ export interface ControlSettings {
     StartAutomaton: string;
     Automatons: string[];
     OnAutomatonSelect: (name: string) => void;
+
+    Recorder: MediaRecorder;
 }
 
 export function initControls(settings: ControlSettings) {
@@ -60,6 +63,17 @@ export function initControls(settings: ControlSettings) {
     // Reinitialize automaton
     ReinitializeButton.addEventListener("click",
         () => settings.OnAutomatonSelect(AutomatonSelection.value));
+
+    // Recording button
+    let isRecording = false;
+    RecordingButton.onclick = () => {
+        if (!isRecording) {
+            settings.Recorder.start();
+        } else {
+            settings.Recorder.stop();
+        }
+        isRecording = !isRecording;
+    }
 
     return settings;
 }

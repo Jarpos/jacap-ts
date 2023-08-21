@@ -42,6 +42,8 @@ const settings = initControls({
     StartAutomaton: startAutomaton,
     Automatons: names,
     OnAutomatonSelect: SelectAutomaton,
+
+    Recorder: Recording.createRecorder(canvas),
 });
 
 SelectAutomaton(startAutomaton);
