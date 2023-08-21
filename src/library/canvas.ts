@@ -1,5 +1,5 @@
 export class AutomatonCanvas {
-    private Canvas: HTMLCanvasElement;
+    public readonly Canvas: HTMLCanvasElement;
 
     public readonly Resolution: number;
     public readonly Context: CanvasRenderingContext2D;
