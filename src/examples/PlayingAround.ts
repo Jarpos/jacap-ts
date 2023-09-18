@@ -1,3 +1,4 @@
+import { Funcs } from "../helpers/funcs";
 import { Utility } from "../helpers/utility";
 import { Neighborhood } from "../library/neighborhood";
 import { AutomatonDefinition, Color } from "../library/types";
@@ -5,7 +6,7 @@ import { AutomatonDefinition, Color } from "../library/types";
 export namespace PlayingAround {
     // TODO: Rework this function... maybe add multiple update funcs to choose from?
     const Update = (current: number, neighbors: Neighborhood<number>) => {
-        const n: number = 4;
+        const n: number = 7;
         switch (n) {
             case 0:
                 return neighbors.E * 0.25
@@ -50,6 +51,18 @@ export namespace PlayingAround {
             case 6:
                 return Math.tan(current * neighbors.E)
                     + Math.atan(current * neighbors.W);
+            case 7:
+                return Funcs.relu(
+                    current
+                    + neighbors.E * 0.25
+                    + neighbors.W * 1.75
+                    - neighbors.S * 0.25
+                    - neighbors.N * 1.75
+                    + neighbors.NE * 0.25
+                    + neighbors.NW * 1.75
+                    - neighbors.SE * 0.25
+                    - neighbors.NW * 1.75
+                );
         }
         throw new RangeError(`Value ${n} not in case range`);
     }
