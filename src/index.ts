@@ -10,6 +10,8 @@ import { DayAndNight } from "./examples/DayAndNight";
 import { Explosions } from "./examples/Explosions";
 import { Fire } from "./examples/Fire";
 import { GameOfLife } from "./examples/GameOfLife";
+import { Movers } from "./examples/Movers";
+import { PlayingAround } from "./examples/PlayingAround";
 import { RandomBlinkTest } from "./examples/RandomBlink";
 import { Water } from "./examples/Water";
 
@@ -19,6 +21,7 @@ const Automatons = new Map<string, AutomatonDefinition<any, any>>([
     ["Explosions", /*********/ Explosions.AutomatonDefinition],
     ["Fire", /***************/ Fire.AutomatonDefinition],
     ["Game of Life", /*******/ GameOfLife.AutomatonDefinition],
+    ["Movers", /*************/ Movers.AutomatonDefinition],
     ["Playing Around", /*****/ PlayingAround.AutomatonDefinition],
     ["Random Blink Test", /**/ RandomBlinkTest.AutomatonDefinition],
     ["Water", /**************/ Water.AutomatonDefinition],
