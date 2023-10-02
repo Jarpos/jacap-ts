@@ -1,6 +1,9 @@
 # jacap-ts - Just Another Cellular Automata Project - TypeScript
 This is a very simple project to play around with some simple cellular automatons.
 
+The code is quite messy sadly... But for now I haven't found the muse to rework it, so for now it'll stay like this.
+
+
 ## Table of Contents
 - [jacap-ts - Just Another Cellular Automata Project - TypeScript](#jacap-ts---just-another-cellular-automata-project---typescript)
   - [Table of Contents](#table-of-contents)
@@ -9,10 +12,12 @@ This is a very simple project to play around with some simple cellular automaton
     - [Ideas for others](#ideas-for-others)
   - [Automaton Setup](#automaton-setup)
 
+
 ## Todo
 - Rework controls
 - Add more controls
 - Add support for rulestrings (https://conwaylife.com/wiki/Rulestring)
+
 
 ## Automatons
 | Name              | Explanation                                                                        |
@@ -27,6 +32,7 @@ This is a very simple project to play around with some simple cellular automaton
 
 ### Ideas for others
 - Seeds (https://conwaylife.com/wiki/OCA:Seeds)
+
 
 ## Automaton Setup
 This is the basic "layout"/"setup" for an automaton. (Everything that needs replacing is marked with `__` in front of it)
